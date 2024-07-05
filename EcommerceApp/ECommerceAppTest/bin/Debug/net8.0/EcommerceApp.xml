@@ -1,0 +1,395 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EcommerceApp</name>
+    </assembly>
+    <members>
+        <member name="T:EcommerceApp.Controllers.CategoriesController">
+            <summary>
+            categories Controller
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.#ctor(EcommerceApp.Repositories.Contracts.ICategoryRepository,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{EcommerceApp.Controllers.CategoriesController})">
+            <summary>
+            Categories Endpoints
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.GetAllCategories">
+            <summary>
+            Get Categories List
+            </summary>
+            <remarks>
+              URL
+              GET: api/Categories
+            </remarks>
+            <returns>Ok response with List of categories in case of success</returns>
+            <response code="500">If error occurres</response>
+            
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+            <summary>
+            Get category by product Id
+            </summary>
+            <remarks>
+              URL
+              GET: api/Categories/1
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with Category in case of success</returns>
+            <response code="404">If category with provided id is not found</response>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.AddCategory(EcommerceApp.Entities.DTOs.Category.CategoryRequestDTO)">
+            <summary>
+            Create new category
+            </summary>
+            <remarks>
+            URL:POST api/categories
+            Request Body:
+                {
+                   "name": "Food",
+                }
+            </remarks>
+            <returns>A newly created category</returns>
+            <response code="201">Returns the newly created category item</response>
+            <response code="400">If invalid request object is provided or Category is already present</response>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.UpdateCategory(System.Int32,EcommerceApp.Entities.DTOs.Category.CategoryRequestDTO)">
+            <summary>
+            Update category deatils by category Id
+            </summary>
+             <remarks>
+              URL
+              PUT: api/categories/1
+              Request Body
+                {
+                   "name": "Food",
+                }
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with category id in case of success</returns>
+            <response code="400">If request Object provided</response>
+            <response code="404">If products with provided product id is not found</response>
+            <response code="500">If some error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoriesController.DeleteCategory(System.Int32)">
+            <summary>
+            Delete category deatils by category Id
+            </summary>
+            <remarks>
+              URL
+              DELETE: api/categories/1
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with category id in case of success</returns>
+            <response code="404">If products with provided category id is not found</response>
+            <response code="500">If some error occurres</response>
+        </member>
+        <member name="T:EcommerceApp.Controllers.CategoryWithProductsController">
+            <summary>
+            Category With Products Controller
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoryWithProductsController.#ctor(EcommerceApp.Repositories.Contracts.ICategoryWithProductsRepo,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{EcommerceApp.Controllers.CategoriesController})">
+            <summary>
+             Category With Products Endpoints
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.CategoryWithProductsController.GetCategoryWithProductDetails(System.Nullable{System.Int32})">
+            <summary>
+            Get category with products
+            </summary>
+            <remarks>
+              URL
+              GET: api/CategoryWithProducts  OR
+              GET: api/CategoryWithProducts?id=1
+            </remarks>
+            <returns>Ok response of category with products in case of success</returns>
+            <response code="204">If data is not available</response>
+            <response code="404">If category with provided id is not found</response>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="T:EcommerceApp.Controllers.ProductsController">
+            <summary>
+            Products Controller
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.#ctor(EcommerceApp.Repositories.Contracts.IProductRepository,AutoMapper.IMapper,Microsoft.Extensions.Logging.ILogger{EcommerceApp.Controllers.ProductsController})">
+            <summary>
+            Products Endpoints
+            </summary>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.GetAllProducts(System.String)">
+            <summary>
+            Get Products List
+            </summary>
+            <remarks>
+              URL
+              GET: api/Products OR 
+              GET: api/Products?filterByNameValue="Real Me Narzo 50"
+            </remarks>
+            <returns>Ok response with List of Products in case of success</returns>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.GetProductById(System.Int32)">
+            <summary>
+            Get Product by product Id
+            </summary>
+            <remarks>
+              URL
+              GET: api/Products/1
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with Product in case of success</returns>
+            <response code="404">If product with provided id is not found</response>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.GetProductByCategoryId(System.Int32)">
+            <summary>
+            Get Products list by category Id
+            </summary>
+            <remarks>
+              URL
+              GET: api/Products/category/1
+            </remarks>
+            <param name="categoryId"></param>
+            <returns>Ok response with Products by category id in case of success</returns>
+            <response code="404">If products with provided category id are not found</response>
+            <response code="500">If error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.AddProduct(EcommerceApp.Entities.DTOs.Product.ProductRequestDTO)">
+            <summary>
+            Create new product
+            </summary>
+            <remarks>
+            URL: POST /Products
+            Request Body:
+                {
+                   "name": "Realme Narzo 50",
+                   "Price": 18000,
+                   "Rating":4,
+                   CategoryId:1
+                }
+            </remarks>
+            <returns>A newly created Product</returns>
+            <response code="201">Returns the newly created product item</response>
+            <response code="400">If invalid request object is provided or product is already present</response>
+            <response code="500">If error occurres</response>
+            
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.UpdateProduct(System.Int32,EcommerceApp.Entities.DTOs.Product.ProductRequestDTO)">
+            <summary>
+            Update Product deatils by product Id
+            </summary>
+             <remarks>
+              URL
+              PUT: api/Products/1
+              Request Body
+                {
+                   "name": "Realme Narzo 50",
+                   "Price": 18000,
+                   "Rating":4,
+                   CategoryId:1
+                }
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with product id in case of success</returns>
+            <response code="400">If request Object provided</response>
+            <response code="404">If products with provided product id is not found</response>
+            <response code="500">If some error occurres</response>
+        </member>
+        <member name="M:EcommerceApp.Controllers.ProductsController.DeleteProduct(System.Int32)">
+            <summary>
+            Delete Product deatils by product Id
+            </summary>
+            <remarks>
+              URL
+              DELETE: api/Products/1
+            </remarks>
+            <param name="id"></param>
+            <returns>Ok response with Product id in case of success</returns>
+            <response code="404">If products with provided product id is not found</response>
+            <response code="500">If some error occurres</response>
+        </member>
+        <member name="T:EcommerceApp.Entities.DomainModels.Category">
+            <summary>
+            Category Data Model
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Category.Id">
+            <summary>
+            Category Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Category.Name">
+            <summary>
+            Category Name
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Category.Products">
+            <summary>
+            Products
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DomainModels.Product">
+            <summary>
+            Product Data Model
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.Id">
+            <summary>
+            Product Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.Name">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.Price">
+            <summary>
+            Product Price
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.Rating">
+            <summary>
+            Product Rating
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.CategoryId">
+            <summary>
+            Category Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DomainModels.Product.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DTOs.CategoryWithProductsResDTO">
+            <summary>
+            Category With Products Response DTO
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.CategoryWithProductsResDTO.Id">
+            <summary>
+            Category  Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.CategoryWithProductsResDTO.Name">
+            <summary>
+            Category Name
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.CategoryWithProductsResDTO.Products">
+            <summary>
+            Products
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DTOs.Category.CategoryRequestDTO">
+            <summary>
+            Category Request DTO
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Category.CategoryRequestDTO.Name">
+            <summary>
+            Category Name
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DTOs.Category.CategoryResponseDTO">
+            <summary>
+            Category Response DTO
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Category.CategoryResponseDTO.Id">
+            <summary>
+            Category Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Category.CategoryResponseDTO.Name">
+            <summary>
+            Category Name
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DTOs.Product.ProductRequestDTO">
+            <summary>
+            Product Request DTO
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductRequestDTO.Name">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductRequestDTO.Price">
+            <summary>
+            Product Price
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductRequestDTO.Rating">
+            <summary>
+            Product Rating
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductRequestDTO.CategoryId">
+            <summary>
+            Product Category Id
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO">
+            <summary>
+            Product Response DTO
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO.Id">
+            <summary>
+            Product Id
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO.Name">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO.Price">
+            <summary>
+            Product Price
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO.Rating">
+            <summary>
+            Product Rating
+            </summary>
+        </member>
+        <member name="P:EcommerceApp.Entities.DTOs.Product.ProductResponseDTO.CategoryId">
+            <summary>
+            Product CategoryId
+            </summary>
+        </member>
+        <member name="T:EcommerceApp.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:EcommerceApp.Migrations.DataSeed">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.DataSeed.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.DataSeed.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:EcommerceApp.Migrations.DataSeed.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

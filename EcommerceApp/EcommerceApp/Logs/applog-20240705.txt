@@ -1,0 +1,1088 @@
+2024-07-05 09:32:24.253 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 09:32:24.343 +05:30 [DBG] Hosting starting
+2024-07-05 09:32:24.449 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 09:32:24.449 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 09:32:24.449 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 09:32:24.450 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 09:32:24.456 +05:30 [INF] Hosting environment: Development
+2024-07-05 09:32:24.456 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 09:32:24.456 +05:30 [DBG] Hosting started
+2024-07-05 09:32:24.501 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 09:32:24.606 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 09:32:24.625 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 09:32:24.626 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 09:32:24.739 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 09:32:24.741 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 09:32:24.768 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 09:32:24.769 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 09:32:24.770 +05:30 [DBG] Connection ID "18158513711248048214" disconnecting.
+2024-07-05 09:32:24.772 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 277.0355ms
+2024-07-05 09:32:24.779 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 09:32:24.787 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 12.1333ms
+2024-07-05 09:32:24.799 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 09:32:24.841 +05:30 [DBG] Connection ID "18302628895028936977" disconnecting.
+2024-07-05 09:32:24.843 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 43.3581ms
+2024-07-05 09:32:24.892 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 09:32:24.892 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 09:32:24.893 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 09:32:25.029 +05:30 [DBG] Connection ID "18014398514582257736" disconnecting.
+2024-07-05 09:32:25.029 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 136.7979ms
+2024-07-05 10:15:50.682 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 10:15:50.769 +05:30 [DBG] Hosting starting
+2024-07-05 10:15:50.877 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 10:15:50.878 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 10:15:50.878 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 10:15:50.878 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 10:15:50.883 +05:30 [INF] Hosting environment: Development
+2024-07-05 10:15:50.883 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 10:15:50.884 +05:30 [DBG] Hosting started
+2024-07-05 10:15:50.924 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 10:15:51.031 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 10:15:51.044 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 10:15:51.044 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 10:15:51.154 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 10:15:51.156 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 10:15:51.182 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 10:15:51.182 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 10:15:51.189 +05:30 [DBG] Connection ID "18374686497656799649" disconnecting.
+2024-07-05 10:15:51.190 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 269.8645ms
+2024-07-05 10:15:51.212 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 10:15:51.216 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 10:15:51.233 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 16.1978ms
+2024-07-05 10:15:51.233 +05:30 [DBG] Connection ID "18374686497656799651" disconnecting.
+2024-07-05 10:15:51.260 +05:30 [DBG] Connection ID "18158513711248048216" disconnecting.
+2024-07-05 10:15:51.266 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.2494ms
+2024-07-05 10:15:51.332 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 10:15:51.332 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 10:15:51.333 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 10:15:51.460 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 127.5522ms
+2024-07-05 10:15:51.460 +05:30 [DBG] Connection ID "18014398514582257738" disconnecting.
+2024-07-05 12:22:06.024 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 12:22:06.115 +05:30 [DBG] Hosting starting
+2024-07-05 12:22:06.230 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 12:22:06.231 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 12:22:06.231 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 12:22:06.231 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 12:22:06.240 +05:30 [INF] Hosting environment: Development
+2024-07-05 12:22:06.240 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 12:22:06.240 +05:30 [DBG] Hosting started
+2024-07-05 12:22:06.287 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 12:22:06.384 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 12:22:06.401 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 12:22:06.401 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 12:22:06.513 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 12:22:06.515 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 12:22:06.545 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 12:22:06.545 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 12:22:06.562 +05:30 [DBG] Connection ID "17798225749648343130" disconnecting.
+2024-07-05 12:22:06.569 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 12:22:06.569 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 12:22:06.570 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 288.8064ms
+2024-07-05 12:22:06.572 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 2.5946ms
+2024-07-05 12:22:06.575 +05:30 [DBG] Connection ID "18158513715543015508" disconnecting.
+2024-07-05 12:22:06.608 +05:30 [DBG] Connection ID "17798225749648343132" disconnecting.
+2024-07-05 12:22:06.609 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 47.804ms
+2024-07-05 12:22:06.666 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 12:22:06.667 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 12:22:06.667 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 12:22:06.790 +05:30 [DBG] Connection ID "18014398514582257755" disconnecting.
+2024-07-05 12:22:06.790 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 123.9685ms
+2024-07-05 12:22:41.389 +05:30 [INF] Request starting HTTP/2 POST https://localhost:44385/api/Products - application/json 71
+2024-07-05 12:22:41.404 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 12:22:41.406 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 12:22:41.406 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:41.408 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 12:22:41.410 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:41.428 +05:30 [INF] Route matched with {action = "AddProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddProduct(EcommerceApp.Entities.DTOs.Product.ProductRequestDTO) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 12:22:41.431 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 12:22:41.431 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 12:22:41.432 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:22:41.432 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 12:22:41.432 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:22:41.435 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:22:41.667 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-07-05 12:22:41.759 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:22:41.763 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:22:41.764 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' using the name '' in request data ...
+2024-07-05 12:22:41.765 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2024-07-05 12:22:41.784 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'
+2024-07-05 12:22:41.784 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:41.784 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:41.784 +05:30 [DBG] Attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:22:41.793 +05:30 [DBG] Done attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:42.451 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 12:22:42.518 +05:30 [DBG] Compiling query expression: 
+'DbSet<Product>()
+    .Any(x => x.Name == __product_Name_0)'
+2024-07-05 12:22:42.654 +05:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleAsync<bool>(
+    asyncEnumerable: new SingleQueryingEnumerable<bool>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> 0
+            SELECT EXISTS (
+                SELECT 1
+                FROM Products AS p
+                WHERE p.Name == @__product_Name_0)), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+        EcommerceApp.Data.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2024-07-05 12:22:42.692 +05:30 [DBG] Creating DbConnection.
+2024-07-05 12:22:42.709 +05:30 [DBG] Created DbConnection. (16ms).
+2024-07-05 12:22:42.712 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.044 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.047 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:22:43.053 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2024-07-05 12:22:43.061 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (14ms).
+2024-07-05 12:22:43.067 +05:30 [DBG] Executing DbCommand [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:22:43.134 +05:30 [INF] Executed DbCommand (67ms) [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:22:43.148 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.154 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 16ms reading results.
+2024-07-05 12:22:43.156 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.160 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (3ms).
+2024-07-05 12:22:43.186 +05:30 [DBG] 'AppDbContext' generated a temporary value for the property 'Product.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:22:43.222 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:22:43.225 +05:30 [DBG] SaveChanges starting for 'AppDbContext'.
+2024-07-05 12:22:43.227 +05:30 [DBG] DetectChanges starting for 'AppDbContext'.
+2024-07-05 12:22:43.238 +05:30 [DBG] DetectChanges completed for 'AppDbContext'.
+2024-07-05 12:22:43.288 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.288 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.290 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:22:43.290 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:43.291 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:43.292 +05:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:22:43.307 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:22:43.316 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.316 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 9ms reading results.
+2024-07-05 12:22:43.318 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.318 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 12:22:43.332 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'EcommerceApp.Data.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "EComApp", table "dbo.Categories", column 'Id'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:844d1368-14f9-4eff-842d-3d1c94d42af9
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "EComApp", table "dbo.Categories", column 'Id'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:844d1368-14f9-4eff-842d-3d1c94d42af9
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2024-07-05 12:22:43.492 +05:30 [ERR] An error occurred while saving the entity changes. See the inner exception for details.
+2024-07-05 12:22:43.497 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 12:22:43.498 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 12:22:43.499 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 12:22:43.499 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 12:22:43.500 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductAddFailureResponse'.
+2024-07-05 12:22:43.507 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp) in 2071.8085ms
+2024-07-05 12:22:43.507 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:43.509 +05:30 [DBG] Connection ID "18302628895028936979" disconnecting.
+2024-07-05 12:22:43.510 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 12:22:43.513 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:43.514 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 12:22:43.515 +05:30 [INF] Request finished HTTP/2 POST https://localhost:44385/api/Products - 400 null application/json; charset=utf-8 2125.4535ms
+2024-07-05 12:22:59.700 +05:30 [INF] Request starting HTTP/2 POST https://localhost:44385/api/Products - application/json 70
+2024-07-05 12:22:59.702 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 12:22:59.703 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 12:22:59.703 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:59.704 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 12:22:59.705 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:59.705 +05:30 [INF] Route matched with {action = "AddProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddProduct(EcommerceApp.Entities.DTOs.Product.ProductRequestDTO) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 12:22:59.706 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 12:22:59.706 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 12:22:59.706 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:22:59.706 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 12:22:59.706 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:22:59.706 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:22:59.709 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:22:59.710 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:22:59.710 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' using the name '' in request data ...
+2024-07-05 12:22:59.711 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2024-07-05 12:22:59.718 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'
+2024-07-05 12:22:59.718 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:59.718 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:59.718 +05:30 [DBG] Attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:22:59.719 +05:30 [DBG] Done attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:22:59.731 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 12:22:59.733 +05:30 [DBG] Creating DbConnection.
+2024-07-05 12:22:59.734 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 12:22:59.734 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.734 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.734 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:22:59.734 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:59.734 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:59.734 +05:30 [DBG] Executing DbCommand [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:22:59.739 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:22:59.740 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.740 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 0ms reading results.
+2024-07-05 12:22:59.740 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.740 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 12:22:59.741 +05:30 [DBG] 'AppDbContext' generated a temporary value for the property 'Product.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:22:59.742 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:22:59.742 +05:30 [DBG] SaveChanges starting for 'AppDbContext'.
+2024-07-05 12:22:59.742 +05:30 [DBG] DetectChanges starting for 'AppDbContext'.
+2024-07-05 12:22:59.742 +05:30 [DBG] DetectChanges completed for 'AppDbContext'.
+2024-07-05 12:22:59.743 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.743 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.743 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:22:59.743 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:59.743 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:22:59.743 +05:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:22:59.746 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:22:59.752 +05:30 [DBG] The foreign key property 'Product.Id' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2024-07-05 12:22:59.757 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.757 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 11ms reading results.
+2024-07-05 12:22:59.757 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.757 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 12:22:59.764 +05:30 [DBG] An entity of type 'Product' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:22:59.765 +05:30 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2024-07-05 12:22:59.765 +05:30 [INF] Product Bot added successfully
+2024-07-05 12:22:59.769 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 12:22:59.769 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 12:22:59.769 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 12:22:59.770 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 12:22:59.770 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'EcommerceApp.Entities.DTOs.Product.ProductResponseDTO'.
+2024-07-05 12:22:59.781 +05:30 [DBG] Found the endpoints ["EcommerceApp.Controllers.ProductsController.GetProductById (EcommerceApp)"] for address (id=[1010],action=[GetProductById],controller=[Products])
+2024-07-05 12:22:59.783 +05:30 [DBG] Successfully processed template api/Products/{id:int} for EcommerceApp.Controllers.ProductsController.GetProductById (EcommerceApp) resulting in /api/Products/1010 and 
+2024-07-05 12:22:59.783 +05:30 [DBG] Link generation succeeded for endpoints ["EcommerceApp.Controllers.ProductsController.GetProductById (EcommerceApp)"] with result /api/Products/1010
+2024-07-05 12:22:59.788 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp) in 81.4469ms
+2024-07-05 12:22:59.788 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:22:59.788 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 12:22:59.788 +05:30 [DBG] Connection ID "17798225749648343134" disconnecting.
+2024-07-05 12:22:59.788 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:22:59.789 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 12:22:59.789 +05:30 [INF] Request finished HTTP/2 POST https://localhost:44385/api/Products - 201 null application/json; charset=utf-8 88.8144ms
+2024-07-05 12:43:19.163 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 12:43:19.249 +05:30 [DBG] Hosting starting
+2024-07-05 12:43:19.364 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 12:43:19.364 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 12:43:19.365 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 12:43:19.374 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 12:43:19.374 +05:30 [INF] Hosting environment: Development
+2024-07-05 12:43:19.374 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 12:43:19.377 +05:30 [DBG] Hosting started
+2024-07-05 12:43:19.461 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 12:43:19.584 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 12:43:19.599 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 12:43:19.600 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 12:43:19.694 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 12:43:19.695 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 12:43:19.734 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 12:43:19.735 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 12:43:19.739 +05:30 [DBG] Connection ID "18086456121505087565" disconnecting.
+2024-07-05 12:43:19.737 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 279.8315ms
+2024-07-05 12:43:19.804 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 12:43:19.812 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 12:43:19.816 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 3.4673ms
+2024-07-05 12:43:19.857 +05:30 [DBG] Connection ID "18086456112915152897" disconnecting.
+2024-07-05 12:43:19.868 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 64.4788ms
+2024-07-05 12:43:19.942 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 12:43:19.942 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 12:43:19.942 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 12:43:20.095 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 152.9068ms
+2024-07-05 12:43:20.103 +05:30 [DBG] Connection ID "18086456121505087567" disconnecting.
+2024-07-05 12:44:07.411 +05:30 [INF] Request starting HTTP/2 POST https://localhost:44385/api/Products - application/json 71
+2024-07-05 12:44:07.425 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 12:44:07.427 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 12:44:07.428 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:44:07.430 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 12:44:07.431 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:44:07.454 +05:30 [INF] Route matched with {action = "AddProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddProduct(EcommerceApp.Entities.DTOs.Product.ProductRequestDTO) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 12:44:07.458 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 12:44:07.458 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 12:44:07.458 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:44:07.459 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 12:44:07.459 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:44:07.460 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:44:07.569 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-07-05 12:44:07.662 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:44:07.666 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:44:07.668 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' using the name '' in request data ...
+2024-07-05 12:44:07.669 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2024-07-05 12:44:07.691 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'
+2024-07-05 12:44:07.692 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:44:07.692 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:44:07.692 +05:30 [DBG] Attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:44:07.701 +05:30 [DBG] Done attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:44:15.040 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 12:44:15.082 +05:30 [DBG] Compiling query expression: 
+'DbSet<Product>()
+    .Any(x => x.Name == __product_Name_0)'
+2024-07-05 12:44:15.203 +05:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleAsync<bool>(
+    asyncEnumerable: new SingleQueryingEnumerable<bool>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> 0
+            SELECT EXISTS (
+                SELECT 1
+                FROM Products AS p
+                WHERE p.Name == @__product_Name_0)), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+        EcommerceApp.Data.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2024-07-05 12:44:15.235 +05:30 [DBG] Creating DbConnection.
+2024-07-05 12:44:15.251 +05:30 [DBG] Created DbConnection. (13ms).
+2024-07-05 12:44:15.253 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:44:15.498 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:44:15.501 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:44:15.507 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2024-07-05 12:44:15.522 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (21ms).
+2024-07-05 12:44:15.542 +05:30 [DBG] Executing DbCommand [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:44:15.611 +05:30 [INF] Executed DbCommand (83ms) [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:44:15.626 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:44:15.633 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 17ms reading results.
+2024-07-05 12:44:15.635 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:44:15.639 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (3ms).
+2024-07-05 12:44:15.639 +05:30 [INF] Product Bot is already available in system. add another another
+2024-07-05 12:44:41.928 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 12:44:41.929 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 12:44:41.929 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 12:44:41.930 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 12:44:41.930 +05:30 [INF] Executing BadRequestObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductAddFailureResponse'.
+2024-07-05 12:44:41.938 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp) in 34476.1398ms
+2024-07-05 12:44:41.939 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:44:41.941 +05:30 [DBG] Connection ID "18086456117210120213" disconnecting.
+2024-07-05 12:44:41.942 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 12:44:41.945 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:44:41.946 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 12:44:41.946 +05:30 [INF] Request finished HTTP/2 POST https://localhost:44385/api/Products - 400 null application/json; charset=utf-8 34534.921ms
+2024-07-05 12:45:23.447 +05:30 [INF] Request starting HTTP/2 POST https://localhost:44385/api/Products - application/json 79
+2024-07-05 12:45:23.449 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 12:45:23.450 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 12:45:23.450 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:45:23.451 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 12:45:23.451 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.AddProduct (EcommerceApp)'
+2024-07-05 12:45:23.452 +05:30 [INF] Route matched with {action = "AddProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] AddProduct(EcommerceApp.Entities.DTOs.Product.ProductRequestDTO) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 12:45:23.452 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 12:45:23.452 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 12:45:23.452 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:45:23.452 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 12:45:23.452 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)","EcommerceApp.CustomAttributes.ValidateRequestModelAttribute (Order: 0)"]
+2024-07-05 12:45:23.452 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:45:23.453 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 12:45:23.454 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:45:23.454 +05:30 [DBG] Attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' using the name '' in request data ...
+2024-07-05 12:45:23.455 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2024-07-05 12:45:23.457 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'
+2024-07-05 12:45:23.457 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:45:23.457 +05:30 [DBG] Done attempting to bind parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:45:23.457 +05:30 [DBG] Attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO' ...
+2024-07-05 12:45:23.458 +05:30 [DBG] Done attempting to validate the bound parameter 'productReqDTO' of type 'EcommerceApp.Entities.DTOs.Product.ProductRequestDTO'.
+2024-07-05 12:45:28.534 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 12:45:28.537 +05:30 [DBG] Creating DbConnection.
+2024-07-05 12:45:28.538 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 12:45:28.538 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.539 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.539 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:45:28.539 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:45:28.540 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:45:28.540 +05:30 [DBG] Executing DbCommand [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:45:28.560 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__product_Name_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]
+        WHERE [p].[Name] = @__product_Name_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-05 12:45:28.562 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.563 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 1ms reading results.
+2024-07-05 12:45:28.563 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.563 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 12:45:28.590 +05:30 [DBG] 'AppDbContext' generated a temporary value for the property 'Product.Id'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:45:28.623 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 12:45:28.625 +05:30 [DBG] SaveChanges starting for 'AppDbContext'.
+2024-07-05 12:45:28.628 +05:30 [DBG] DetectChanges starting for 'AppDbContext'.
+2024-07-05 12:45:28.639 +05:30 [DBG] DetectChanges completed for 'AppDbContext'.
+2024-07-05 12:45:28.696 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.696 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.698 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 12:45:28.698 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 12:45:28.699 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (1ms).
+2024-07-05 12:45:28.700 +05:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:45:28.703 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p2='?' (Precision = 10) (Scale = 2) (DbType = Decimal), @p3='?' (DbType = Double)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Products] ([CategoryId], [Name], [Price], [Rating])
+OUTPUT INSERTED.[Id]
+VALUES (@p0, @p1, @p2, @p3);
+2024-07-05 12:45:28.711 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.711 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 7ms reading results.
+2024-07-05 12:45:28.713 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 12:45:28.713 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 12:45:28.725 +05:30 [ERR] An exception occurred in the database while saving changes for context type 'EcommerceApp.Data.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "EComApp", table "dbo.Categories", column 'Id'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:c5393d8b-4b25-4200-813e-092bc54d4d2b
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Products_Categories_CategoryId". The conflict occurred in database "EComApp", table "dbo.Categories", column 'Id'.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.ReadAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderBaseAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:c5393d8b-4b25-4200-813e-092bc54d4d2b
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeResultSetAsync(Int32 startCommandIndex, RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2024-07-05 16:46:35.939 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 16:46:36.041 +05:30 [DBG] Hosting starting
+2024-07-05 16:46:36.219 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 16:46:36.219 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 16:46:36.219 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 16:46:36.219 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 16:46:36.220 +05:30 [INF] Hosting environment: Development
+2024-07-05 16:46:36.220 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 16:46:36.225 +05:30 [DBG] Hosting started
+2024-07-05 16:46:36.300 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 16:46:36.423 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 16:46:36.443 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 16:46:36.444 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 16:46:36.608 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 16:46:36.609 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 16:46:36.646 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 16:46:36.647 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 16:46:36.666 +05:30 [DBG] Connection ID "18086456121505087571" disconnecting.
+2024-07-05 16:46:36.670 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 373.0614ms
+2024-07-05 16:46:36.691 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 16:46:36.691 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 16:46:36.698 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 4.9126ms
+2024-07-05 16:46:36.706 +05:30 [DBG] Connection ID "18086456121505087573" disconnecting.
+2024-07-05 16:46:36.739 +05:30 [DBG] Connection ID "18086456117210120217" disconnecting.
+2024-07-05 16:46:36.746 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 55.6427ms
+2024-07-05 16:46:36.818 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 16:46:36.818 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 16:46:36.818 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 16:46:36.945 +05:30 [DBG] Connection ID "18086456117210120219" disconnecting.
+2024-07-05 16:46:36.945 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 127.6378ms
+2024-07-05 16:47:05.361 +05:30 [INF] Request starting HTTP/2 DELETE https://localhost:44385/api/Products/7890 - null null
+2024-07-05 16:47:05.375 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products/7890'
+2024-07-05 16:47:05.377 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' is valid for the request path '/api/Products/7890'
+2024-07-05 16:47:05.377 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:47:05.379 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 16:47:05.381 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:47:05.397 +05:30 [INF] Route matched with {action = "DeleteProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteProduct(Int32) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 16:47:05.399 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 16:47:05.400 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 16:47:05.401 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 16:47:05.402 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 16:47:05.402 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 16:47:05.404 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:47:05.612 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-07-05 16:47:05.707 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:47:05.710 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:47:05.712 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2024-07-05 16:47:05.713 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:47:05.714 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:47:05.714 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:47:05.715 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2024-07-05 16:47:06.290 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 16:47:06.468 +05:30 [DBG] Compiling query expression: 
+'DbSet<Product>()
+    .FirstOrDefault(e => EF.Property<int>(e, "Id") == __p_0)'
+2024-07-05 16:47:06.632 +05:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Product>(
+    asyncEnumerable: new SingleQueryingEnumerable<Product>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Product.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Product.CategoryId (int) Required FK Index, 1], [Property: Product.Name (string), 2], [Property: Product.Price (decimal) Required, 3], [Property: Product.Rating (double) Required, 4] }
+            SELECT TOP(1) p.Id, p.CategoryId, p.Name, p.Price, p.Rating
+            FROM Products AS p
+            WHERE p.Id == @__p_0), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Product>, 
+        EcommerceApp.Data.AppDbContext, 
+        False, 
+        False, 
+        True
+    ), 
+    cancellationToken: queryContext.CancellationToken)'
+2024-07-05 16:47:06.663 +05:30 [DBG] Creating DbConnection.
+2024-07-05 16:47:06.684 +05:30 [DBG] Created DbConnection. (17ms).
+2024-07-05 16:47:06.687 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:47:07.032 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:47:07.035 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 16:47:07.040 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (3ms).
+2024-07-05 16:47:07.047 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (11ms).
+2024-07-05 16:47:07.053 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:47:07.100 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:47:07.111 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:47:07.116 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 12ms reading results.
+2024-07-05 16:47:07.120 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:47:07.125 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (5ms).
+2024-07-05 16:47:07.125 +05:30 [INF] Product with id = 7890 is not found.
+2024-07-05 16:47:07.129 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 16:47:07.131 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 16:47:07.131 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 16:47:07.132 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 16:47:07.132 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductNotFoundResponse'.
+2024-07-05 16:47:07.145 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp) in 1740.8892ms
+2024-07-05 16:47:07.146 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:47:07.147 +05:30 [DBG] Connection ID "17942340916249362484" disconnecting.
+2024-07-05 16:47:07.149 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 16:47:07.152 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:47:07.153 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 16:47:07.154 +05:30 [INF] Request finished HTTP/2 DELETE https://localhost:44385/api/Products/7890 - 404 null application/json; charset=utf-8 1792.7743ms
+2024-07-05 16:48:21.788 +05:30 [INF] Request starting HTTP/2 DELETE https://localhost:44385/api/Products/0 - null null
+2024-07-05 16:48:21.790 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products/0'
+2024-07-05 16:48:21.790 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' is valid for the request path '/api/Products/0'
+2024-07-05 16:48:21.790 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:21.791 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 16:48:21.791 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:21.791 +05:30 [INF] Route matched with {action = "DeleteProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteProduct(Int32) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 16:48:21.791 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 16:48:21.792 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 16:48:21.792 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 16:48:21.792 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 16:48:21.792 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 16:48:21.792 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:48:21.794 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:48:21.796 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:48:21.796 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2024-07-05 16:48:21.800 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:21.800 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:21.800 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:48:21.801 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:21.819 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 16:48:21.822 +05:30 [DBG] Creating DbConnection.
+2024-07-05 16:48:21.823 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 16:48:21.823 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:21.824 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:21.824 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 16:48:21.824 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:48:21.824 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:48:21.825 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:48:21.834 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:48:21.834 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:21.834 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 0ms reading results.
+2024-07-05 16:48:21.834 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:21.835 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 16:48:21.835 +05:30 [INF] Product with id = 0 is not found.
+2024-07-05 16:48:21.835 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 16:48:21.835 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 16:48:21.835 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 16:48:21.836 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 16:48:21.836 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductNotFoundResponse'.
+2024-07-05 16:48:21.836 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp) in 43.7505ms
+2024-07-05 16:48:21.836 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:21.836 +05:30 [DBG] Connection ID "17870283343686271282" disconnecting.
+2024-07-05 16:48:21.837 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 16:48:21.837 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:21.837 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 16:48:21.838 +05:30 [INF] Request finished HTTP/2 DELETE https://localhost:44385/api/Products/0 - 404 null application/json; charset=utf-8 50.41ms
+2024-07-05 16:48:24.326 +05:30 [INF] Request starting HTTP/2 DELETE https://localhost:44385/api/Products/0 - null null
+2024-07-05 16:48:24.327 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products/0'
+2024-07-05 16:48:24.327 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' is valid for the request path '/api/Products/0'
+2024-07-05 16:48:24.327 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:24.327 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 16:48:24.327 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:24.327 +05:30 [INF] Route matched with {action = "DeleteProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteProduct(Int32) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 16:48:24.328 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 16:48:24.328 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 16:48:24.328 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 16:48:24.328 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 16:48:24.328 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 16:48:24.328 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:48:24.330 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:48:24.330 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:48:24.330 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2024-07-05 16:48:24.330 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:24.330 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:24.330 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:48:24.330 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2024-07-05 16:48:24.380 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 16:48:24.381 +05:30 [DBG] Creating DbConnection.
+2024-07-05 16:48:24.381 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 16:48:24.381 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:24.382 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:24.382 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 16:48:24.382 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:48:24.382 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:48:24.382 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:48:24.385 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:48:24.385 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:24.385 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 0ms reading results.
+2024-07-05 16:48:24.385 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:24.385 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 16:48:24.385 +05:30 [INF] Product with id = 0 is not found.
+2024-07-05 16:48:24.386 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 16:48:24.386 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 16:48:24.386 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 16:48:24.386 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 16:48:24.386 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductNotFoundResponse'.
+2024-07-05 16:48:24.387 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp) in 59.0248ms
+2024-07-05 16:48:24.387 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:48:24.387 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 16:48:24.387 +05:30 [DBG] Connection ID "18374686489066864855" disconnecting.
+2024-07-05 16:48:24.387 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:48:24.388 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 16:48:24.388 +05:30 [INF] Request finished HTTP/2 DELETE https://localhost:44385/api/Products/0 - 404 null application/json; charset=utf-8 61.8683ms
+2024-07-05 16:48:34.728 +05:30 [INF] Request starting HTTP/2 DELETE https://localhost:44385/api/Products/-96000000000000000000 - null null
+2024-07-05 16:48:34.728 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products/-96000000000000000000'
+2024-07-05 16:48:34.731 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' was rejected by constraint 'id':'Microsoft.AspNetCore.Routing.Constraints.IntRouteConstraint' with value '-96000000000000000000' for the request path '/api/Products/-96000000000000000000'
+2024-07-05 16:48:34.731 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' is not valid for the request path '/api/Products/-96000000000000000000'
+2024-07-05 16:48:34.731 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 16:48:34.732 +05:30 [DBG] DELETE requests are not supported
+2024-07-05 16:48:34.734 +05:30 [DBG] Connection ID "18014398523172192365" disconnecting.
+2024-07-05 16:48:34.734 +05:30 [INF] Request finished HTTP/2 DELETE https://localhost:44385/api/Products/-96000000000000000000 - 404 null null 6.6877ms
+2024-07-05 16:48:34.736 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: DELETE https://localhost:44385/api/Products/-96000000000000000000, Response status code: 404
+2024-07-05 16:50:29.142 +05:30 [INF] Request starting HTTP/2 DELETE https://localhost:44385/api/Products/-976676786 - null null
+2024-07-05 16:50:29.143 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products/-976676786'
+2024-07-05 16:50:29.143 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)' with route pattern 'api/Products/{id:int}' is valid for the request path '/api/Products/-976676786'
+2024-07-05 16:50:29.143 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:50:29.143 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 16:50:29.143 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:50:29.143 +05:30 [INF] Route matched with {action = "DeleteProduct", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteProduct(Int32) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 16:50:29.144 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 16:50:29.144 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 16:50:29.144 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 16:50:29.144 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 16:50:29.144 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 16:50:29.144 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:50:29.145 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 16:50:29.145 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:50:29.145 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2024-07-05 16:50:29.145 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:50:29.145 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2024-07-05 16:50:29.145 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2024-07-05 16:50:29.145 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2024-07-05 16:50:29.147 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 16:50:29.151 +05:30 [DBG] Creating DbConnection.
+2024-07-05 16:50:29.152 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 16:50:29.152 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:50:29.152 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:50:29.152 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 16:50:29.152 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:50:29.152 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 16:50:29.152 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:50:29.163 +05:30 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__p_0
+2024-07-05 16:50:29.167 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:50:29.167 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 1ms reading results.
+2024-07-05 16:50:29.167 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:50:29.167 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 16:50:29.167 +05:30 [INF] Product with id = -976676786 is not found.
+2024-07-05 16:50:29.167 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 16:50:29.167 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 16:50:29.167 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 16:50:29.167 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 16:50:29.167 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.ProductNotFoundResponse'.
+2024-07-05 16:50:29.169 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp) in 24.429ms
+2024-07-05 16:50:29.169 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.DeleteProduct (EcommerceApp)'
+2024-07-05 16:50:29.169 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 16:50:29.169 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 16:50:29.169 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 16:50:29.169 +05:30 [DBG] Connection ID "18014398523172192367" disconnecting.
+2024-07-05 16:50:29.169 +05:30 [INF] Request finished HTTP/2 DELETE https://localhost:44385/api/Products/-976676786 - 404 null application/json; charset=utf-8 27.3789ms
+2024-07-05 17:29:33.664 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 17:29:33.758 +05:30 [DBG] Hosting starting
+2024-07-05 17:29:33.867 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 17:29:33.867 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 17:29:33.867 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 17:29:33.870 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 17:29:33.871 +05:30 [INF] Hosting environment: Development
+2024-07-05 17:29:33.871 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\EcommerceApp\EcommerceApp
+2024-07-05 17:29:33.871 +05:30 [DBG] Hosting started
+2024-07-05 17:29:33.923 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 17:29:34.014 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 17:29:34.028 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 17:29:34.029 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 17:29:34.152 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 17:29:34.154 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 17:29:34.195 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 17:29:34.195 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 17:29:34.197 +05:30 [DBG] Connection ID "17798225745353375793" disconnecting.
+2024-07-05 17:29:34.202 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 17:29:34.200 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 279.214ms
+2024-07-05 17:29:34.207 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 17:29:34.208 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 6.113ms
+2024-07-05 17:29:34.263 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 56.5814ms
+2024-07-05 17:29:34.292 +05:30 [DBG] Connection ID "18302628907913838674" disconnecting.
+2024-07-05 17:29:34.346 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 17:29:34.347 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 17:29:34.347 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 17:29:34.481 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 134.8101ms
+2024-07-05 17:29:34.485 +05:30 [DBG] Connection ID "18086456104325218478" disconnecting.
+2024-07-05 17:29:43.208 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/api/Products - null null
+2024-07-05 17:29:43.216 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 17:29:43.220 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 17:29:43.222 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:43.224 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 17:29:43.226 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:43.245 +05:30 [INF] Route matched with {action = "GetAllProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllProducts(System.String) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 17:29:43.248 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 17:29:43.249 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 17:29:43.249 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 17:29:43.249 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 17:29:43.250 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 17:29:43.252 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 17:29:43.571 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-07-05 17:29:43.661 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 17:29:43.664 +05:30 [DBG] Attempting to bind parameter 'filterByNameValue' of type 'System.String' ...
+2024-07-05 17:29:43.665 +05:30 [DBG] Attempting to bind parameter 'filterByNameValue' of type 'System.String' using the name '' in request data ...
+2024-07-05 17:29:43.666 +05:30 [DBG] Could not find a value in the request with name '' for binding parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:43.666 +05:30 [DBG] Done attempting to bind parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:43.666 +05:30 [DBG] Done attempting to bind parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:43.666 +05:30 [DBG] Attempting to validate the bound parameter 'filterByNameValue' of type 'System.String' ...
+2024-07-05 17:29:43.667 +05:30 [DBG] Done attempting to validate the bound parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:44.224 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 17:29:44.491 +05:30 [DBG] Compiling query expression: 
+'DbSet<Product>()'
+2024-07-05 17:29:44.612 +05:30 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Product>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Product.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Product.CategoryId (int) Required FK Index, 1], [Property: Product.Name (string), 2], [Property: Product.Price (decimal) Required, 3], [Property: Product.Rating (double) Required, 4] }
+        SELECT p.Id, p.CategoryId, p.Name, p.Price, p.Rating
+        FROM Products AS p), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Product>, 
+    EcommerceApp.Data.AppDbContext, 
+    False, 
+    False, 
+    True
+)'
+2024-07-05 17:29:44.637 +05:30 [DBG] Creating DbConnection.
+2024-07-05 17:29:44.657 +05:30 [DBG] Created DbConnection. (18ms).
+2024-07-05 17:29:44.659 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:45.270 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:45.272 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 17:29:45.279 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (4ms).
+2024-07-05 17:29:45.281 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (8ms).
+2024-07-05 17:29:45.286 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+2024-07-05 17:29:45.321 +05:30 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+2024-07-05 17:29:45.349 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.366 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.366 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.366 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.366 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.366 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.367 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.367 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.367 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.367 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.367 +05:30 [DBG] Context 'AppDbContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-07-05 17:29:45.372 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:45.376 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 51ms reading results.
+2024-07-05 17:29:45.378 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:45.382 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (3ms).
+2024-07-05 17:29:45.394 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 17:29:45.395 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 17:29:45.395 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 17:29:45.396 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 17:29:45.396 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[EcommerceApp.Entities.DTOs.Product.ProductResponseDTO, EcommerceApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-07-05 17:29:45.419 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp) in 2166.6256ms
+2024-07-05 17:29:45.420 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:45.422 +05:30 [DBG] Connection ID "18158513711248048227" disconnecting.
+2024-07-05 17:29:45.423 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 17:29:45.426 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:45.427 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 17:29:45.428 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/api/Products - 200 null application/json; charset=utf-8 2220.13ms
+2024-07-05 17:29:52.869 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/api/Products?filterByNameValue=jejfjojf - null null
+2024-07-05 17:29:52.871 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Products'
+2024-07-05 17:29:52.871 +05:30 [DBG] Endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)' with route pattern 'api/Products' is valid for the request path '/api/Products'
+2024-07-05 17:29:52.872 +05:30 [DBG] Request matched endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:52.872 +05:30 [DBG] Static files was skipped as the request already matched an endpoint.
+2024-07-05 17:29:52.872 +05:30 [INF] Executing endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:52.873 +05:30 [INF] Route matched with {action = "GetAllProducts", controller = "Products"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllProducts(System.String) on controller EcommerceApp.Controllers.ProductsController (EcommerceApp).
+2024-07-05 17:29:52.873 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-07-05 17:29:52.873 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2024-07-05 17:29:52.873 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-07-05 17:29:52.873 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-07-05 17:29:52.873 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)","Microsoft.AspNetCore.Mvc.ProducesAttribute (Order: 0)"]
+2024-07-05 17:29:52.874 +05:30 [DBG] Executing controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 17:29:52.875 +05:30 [DBG] Executed controller factory for controller EcommerceApp.Controllers.ProductsController (EcommerceApp)
+2024-07-05 17:29:52.878 +05:30 [DBG] Attempting to bind parameter 'filterByNameValue' of type 'System.String' ...
+2024-07-05 17:29:52.879 +05:30 [DBG] Attempting to bind parameter 'filterByNameValue' of type 'System.String' using the name 'filterByNameValue' in request data ...
+2024-07-05 17:29:52.881 +05:30 [DBG] Done attempting to bind parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:52.881 +05:30 [DBG] Done attempting to bind parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:52.881 +05:30 [DBG] Attempting to validate the bound parameter 'filterByNameValue' of type 'System.String' ...
+2024-07-05 17:29:52.882 +05:30 [DBG] Done attempting to validate the bound parameter 'filterByNameValue' of type 'System.String'.
+2024-07-05 17:29:52.897 +05:30 [DBG] Entity Framework Core 8.0.6 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:8.0.6' with options: None
+2024-07-05 17:29:52.906 +05:30 [DBG] Compiling query expression: 
+'DbSet<Product>()
+    .Where(x => x.Name.Contains(__filterByNameValue_0))'
+2024-07-05 17:29:52.958 +05:30 [DBG] Generated query execution expression: 
+'queryContext => 
+{
+    queryContext.AddParameter(
+        name: "__filterByNameValue_0_contains", 
+        value: (object)Invoke(queryContext => SqlServerSqlTranslatingExpressionVisitor.ConstructLikePatternParameter(
+            queryContext: queryContext, 
+            baseParameterName: "__filterByNameValue_0", 
+            methodType: Contains), queryContext));
+    return new SingleQueryingEnumerable<Product>(
+        (RelationalQueryContext)queryContext, 
+        RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Product.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Product.CategoryId (int) Required FK Index, 1], [Property: Product.Name (string), 2], [Property: Product.Price (decimal) Required, 3], [Property: Product.Rating (double) Required, 4] }
+            SELECT p.Id, p.CategoryId, p.Name, p.Price, p.Rating
+            FROM Products AS p
+            WHERE p.Name LIKE @__filterByNameValue_0_contains ESCAPE N'\'), 
+        null, 
+        Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Product>, 
+        EcommerceApp.Data.AppDbContext, 
+        False, 
+        False, 
+        True
+    );
+}'
+2024-07-05 17:29:52.960 +05:30 [DBG] Creating DbConnection.
+2024-07-05 17:29:52.961 +05:30 [DBG] Created DbConnection. (0ms).
+2024-07-05 17:29:52.961 +05:30 [DBG] Opening connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:52.963 +05:30 [DBG] Opened connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:52.963 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-07-05 17:29:52.964 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2024-07-05 17:29:52.967 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (3ms).
+2024-07-05 17:29:52.969 +05:30 [DBG] Executing DbCommand [Parameters=[@__filterByNameValue_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Name] LIKE @__filterByNameValue_0_contains ESCAPE N'\'
+2024-07-05 17:29:53.039 +05:30 [INF] Executed DbCommand (72ms) [Parameters=[@__filterByNameValue_0_contains='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CategoryId], [p].[Name], [p].[Price], [p].[Rating]
+FROM [Products] AS [p]
+WHERE [p].[Name] LIKE @__filterByNameValue_0_contains ESCAPE N'\'
+2024-07-05 17:29:53.039 +05:30 [DBG] Closing data reader to 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:53.040 +05:30 [DBG] A data reader for 'EComApp' on server 'HARSHADKU' is being disposed after spending 0ms reading results.
+2024-07-05 17:29:53.040 +05:30 [DBG] Closing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:53.040 +05:30 [DBG] Closed connection to database 'EComApp' on server 'HARSHADKU' (0ms).
+2024-07-05 17:29:53.041 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2024-07-05 17:29:53.042 +05:30 [DBG] No information found on request to perform content negotiation.
+2024-07-05 17:29:53.042 +05:30 [DBG] Attempting to select the first output formatter in the output formatters list which supports a content type from the explicitly specified content types '["application/json"]'.
+2024-07-05 17:29:53.042 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-07-05 17:29:53.042 +05:30 [INF] Executing OkObjectResult, writing value of type 'EcommerceApp.Entities.APIResponses.AllProductsResponse'.
+2024-07-05 17:29:53.045 +05:30 [INF] Executed action EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp) in 171.4055ms
+2024-07-05 17:29:53.045 +05:30 [INF] Executed endpoint 'EcommerceApp.Controllers.ProductsController.GetAllProducts (EcommerceApp)'
+2024-07-05 17:29:53.045 +05:30 [DBG] 'AppDbContext' disposed.
+2024-07-05 17:29:53.045 +05:30 [DBG] Connection ID "17870283339391303701" disconnecting.
+2024-07-05 17:29:53.046 +05:30 [DBG] Disposing connection to database 'EComApp' on server 'HARSHADKU'.
+2024-07-05 17:29:53.046 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2024-07-05 17:29:53.046 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/api/Products?filterByNameValue=jejfjojf - 200 null application/json; charset=utf-8 177.6506ms
+2024-07-05 18:06:07.073 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-07-05 18:06:07.160 +05:30 [DBG] Hosting starting
+2024-07-05 18:06:07.263 +05:30 [DBG] Loaded hosting startup assembly EcommerceApp
+2024-07-05 18:06:07.263 +05:30 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2024-07-05 18:06:07.263 +05:30 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2024-07-05 18:06:07.263 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2024-07-05 18:06:07.269 +05:30 [INF] Hosting environment: Development
+2024-07-05 18:06:07.269 +05:30 [INF] Content root path: C:\Users\HARSHADKU\source\repos\Initial\EcommerceApp\EcommerceApp
+2024-07-05 18:06:07.269 +05:30 [DBG] Hosting started
+2024-07-05 18:06:07.311 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/index.html - null null
+2024-07-05 18:06:07.964 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-07-05 18:06:07.984 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2024-07-05 18:06:07.985 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 18:06:08.087 +05:30 [DBG] Response markup is scheduled to include Browser Link script injection.
+2024-07-05 18:06:08.089 +05:30 [DBG] Response markup is scheduled to include browser refresh script injection.
+2024-07-05 18:06:08.113 +05:30 [DBG] Response markup was updated to include Browser Link script injection.
+2024-07-05 18:06:08.114 +05:30 [DBG] Response markup was updated to include browser refresh script injection.
+2024-07-05 18:06:08.119 +05:30 [DBG] Connection ID "18230571309580943426" disconnecting.
+2024-07-05 18:06:08.121 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/index.html - 200 null text/html;charset=utf-8 814.9093ms
+2024-07-05 18:06:08.133 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - null null
+2024-07-05 18:06:08.139 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_framework/aspnetcore-browser-refresh.js - 200 13760 application/javascript; charset=utf-8 6.4609ms
+2024-07-05 18:06:08.139 +05:30 [DBG] Connection ID "18230571309580943428" disconnecting.
+2024-07-05 18:06:08.147 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/_vs/browserLink - null null
+2024-07-05 18:06:08.198 +05:30 [DBG] Connection ID "17726168155610415129" disconnecting.
+2024-07-05 18:06:08.201 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/_vs/browserLink - 200 null text/javascript; charset=UTF-8 54.079ms
+2024-07-05 18:06:08.292 +05:30 [INF] Request starting HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - null null
+2024-07-05 18:06:08.292 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2024-07-05 18:06:08.293 +05:30 [DBG] Request did not match any endpoints
+2024-07-05 18:06:08.417 +05:30 [INF] Request finished HTTP/2 GET https://localhost:44385/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 124.6414ms
