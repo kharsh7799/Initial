@@ -7,6 +7,8 @@ using EcommerceApp.Mapping;
 using Serilog;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using EcommerceApp.Services.Contracts;
+using EcommerceApp.Services.Implementations;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +44,10 @@ builder.Services.AddScoped<IProductRepository,ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<ICategoryWithProductsRepo, CategoryWithProductsRepo>();
 
+
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryWithProductsService, CategoryWithProducts>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 

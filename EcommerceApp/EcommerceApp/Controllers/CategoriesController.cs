@@ -5,6 +5,7 @@ using EcommerceApp.Entities.DomainModels;
 using EcommerceApp.Entities.DTOs.Category;
 using EcommerceApp.Entities.DTOs.Product;
 using EcommerceApp.Repositories.Contracts;
+using EcommerceApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Build.Construction;
@@ -21,15 +22,15 @@ namespace EcommerceApp.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ICategoryRepository categoryRepo;
+        private readonly ICategoryService categoryService;
         private readonly IMapper mapper;
         private readonly ILogger<CategoriesController> logger;
         /// <summary>
         /// Categories Endpoints
         /// </summary>
-        public CategoriesController(ICategoryRepository categoryRepo, IMapper mapper, ILogger<CategoriesController> logger)
+        public CategoriesController(ICategoryService categoryService, IMapper mapper, ILogger<CategoriesController> logger)
         {
-            this.categoryRepo = categoryRepo;
+            this.categoryService = categoryService;
             this.mapper = mapper;
             this.logger = logger;
         }
@@ -50,7 +51,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var categoriesData = await categoryRepo.GetAllCategories();
+                var categoriesData = await categoryService.GetAllCategories();
                 var categoriesResponseData = mapper.Map<List<CategoryResponseDTO>>(categoriesData);
                 if (categoriesResponseData.Count > 0)
                 {
@@ -86,7 +87,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var categoryData = await categoryRepo.GetCategoryById(id);
+                var categoryData = await categoryService.GetCategoryById(id);
                 var categoryResponseData = mapper.Map<CategoryResponseDTO>(categoryData);
                 if (categoryResponseData != null)
                 {
@@ -99,6 +100,11 @@ namespace EcommerceApp.Controllers
             }
             catch (Exception ex)
             {
+                if (ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new CategoryErrorResponse { CategoryId = id, ErrorMessage = ResponseConstants.NullOrInvalidCategoryId });
+                }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode:500);
             }
@@ -126,7 +132,7 @@ namespace EcommerceApp.Controllers
             try
             {
                 var addCategoryData = mapper.Map<Category>(categoryReqDTO);
-                var categoryDomainData = await categoryRepo.AddCategory(addCategoryData);
+                var categoryDomainData = await categoryService.AddCategory(addCategoryData);
 
                 var categoryResData = mapper.Map<CategoryResponseDTO>(categoryDomainData);
                 if (categoryResData != null)
@@ -175,7 +181,7 @@ namespace EcommerceApp.Controllers
             try
             {
                 var updateCategoryData = mapper.Map<Category>(updatecategoryReqDTO);
-                var updateCategoryId = await categoryRepo.UpdateCategory(id, updateCategoryData);
+                var updateCategoryId = await categoryService.UpdateCategory(id, updateCategoryData);
 
                 if (updateCategoryId == -1)
                 {
@@ -190,6 +196,11 @@ namespace EcommerceApp.Controllers
                 {
                     logger.LogError(ex.Message, ex);
                     return BadRequest(new CategoryUpdateFailResponse { CategoryId = id, ErrorMessage = ResponseConstants.CategoryUpdateFailed});
+                }
+                if (ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new CategoryErrorResponse { CategoryId = id, ErrorMessage = ResponseConstants.NullOrInvalidCategoryId });
                 }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode:500);
@@ -214,7 +225,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var deleteCategoryId = await categoryRepo.DeleteCategory(id);
+                var deleteCategoryId = await categoryService.DeleteCategory(id);
                 if (deleteCategoryId == -1)
                 {
                     return NotFound(new CategoryNotFoundResponse { CategoryId = id, Message = ResponseConstants.NoRecordWithCategoryId });
@@ -223,10 +234,10 @@ namespace EcommerceApp.Controllers
             }
             catch (Exception ex)
             {
-                if (ex.InnerException is DBConcurrencyException)
+                if (ex is ArgumentNullException)
                 {
                     logger.LogError(ex.Message, ex);
-                    return BadRequest(new CategoryDeleteFailResponse { CategoryId = id, ErrorMessage = ResponseConstants.CategoryDeleteFailed });
+                    return BadRequest(new CategoryErrorResponse { CategoryId = id, ErrorMessage = ResponseConstants.NullOrInvalidCategoryId });
                 }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError, statusCode: 500);

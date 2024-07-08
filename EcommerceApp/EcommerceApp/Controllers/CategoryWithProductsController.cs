@@ -4,6 +4,7 @@ using EcommerceApp.CustomAttributes;
 using EcommerceApp.Entities.DTOs;
 using EcommerceApp.Entities.DTOs.Category;
 using EcommerceApp.Repositories.Contracts;
+using EcommerceApp.Services.Contracts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static EcommerceApp.Entities.APIResponses.APICategoriesResponses;
@@ -17,16 +18,16 @@ namespace EcommerceApp.Controllers
     [ApiController]
     public class CategoryWithProductsController : ControllerBase
     {
-        private readonly ICategoryWithProductsRepo categoryWithProdRepo;
+        private readonly ICategoryWithProductsService categoryWithProdService;
         private readonly IMapper mapper;
-        private readonly ILogger<CategoriesController> logger;
+        private readonly ILogger<CategoryWithProductsController> logger;
 
         /// <summary>
         ///  Category With Products Endpoints
         /// </summary>
-        public CategoryWithProductsController(ICategoryWithProductsRepo categoryWithProdRepo, IMapper mapper, ILogger<CategoriesController> logger)
+        public CategoryWithProductsController(ICategoryWithProductsService categoryWithProdService, IMapper mapper, ILogger<CategoryWithProductsController> logger)
         {
-            this.categoryWithProdRepo = categoryWithProdRepo;
+            this.categoryWithProdService = categoryWithProdService;
             this.mapper = mapper;
             this.logger = logger;
         }
@@ -48,7 +49,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var categoryWithProdDetailsData = await categoryWithProdRepo.GetCategoryWithProductDetails(categoryid);
+                var categoryWithProdDetailsData = await categoryWithProdService.GetCategoryWithProductDetails(categoryid);
                 var categoryResponseData = mapper.Map<List<CategoryWithProductsResDTO>>(categoryWithProdDetailsData);
                 if (categoryResponseData.Any())
                 {
@@ -65,6 +66,11 @@ namespace EcommerceApp.Controllers
             }
             catch (Exception ex)
             {
+                if (ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new CategoryErrorResponse { CategoryId = (int)categoryid, ErrorMessage = ResponseConstants.NullOrInvalidCategoryId });
+                }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode:500);
             }

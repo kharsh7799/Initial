@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using EcommerceApp.Constants;
 using EcommerceApp.Entities.APIResponses;
+using static EcommerceApp.Entities.APIResponses.APICategoriesResponses;
+using EcommerceApp.Services.Contracts;
 
 namespace EcommerceApp.Controllers
 {
@@ -23,16 +25,16 @@ namespace EcommerceApp.Controllers
 
     public class ProductsController : ControllerBase
     {
-        private readonly IProductRepository productRepo;
+        private readonly IProductService productService;
         private readonly IMapper mapper;
         private readonly ILogger<ProductsController> logger;
 
         /// <summary>
         /// Products Endpoints
         /// </summary>
-        public ProductsController(IProductRepository productRepo, IMapper mapper,ILogger<ProductsController> logger) 
+        public ProductsController(IProductService productService, IMapper mapper,ILogger<ProductsController> logger) 
         {
-            this.productRepo = productRepo;
+            this.productService = productService;
             this.mapper = mapper;
             this.logger = logger;
         }
@@ -53,7 +55,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var productsData = await productRepo.GetAllProducts(filterByNameValue);
+                var productsData = await productService.GetAllProducts(filterByNameValue);
                 var productsResponseData = mapper.Map<List<ProductResponseDTO>>(productsData);
                 if(productsResponseData.Count>0)
                 {
@@ -89,7 +91,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var productsData = await productRepo.GetProductById(id);
+                var productsData = await productService.GetProductById(id);
                 var productResponseData = mapper.Map<ProductResponseDTO>(productsData);
                 if (productResponseData != null)
                 {
@@ -102,6 +104,11 @@ namespace EcommerceApp.Controllers
             }
             catch (Exception ex)
             {
+                if (ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new ProductDeleteFailResponse { ProductId = id, ErrorMessage = ResponseConstants.NullOrInvalidProductId});
+                }
                 logger.LogError(ex.Message,ex);
                 return Problem(ResponseConstants.ServerError, statusCode: 500);
 
@@ -126,7 +133,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var productsByCategoryId = await productRepo.GetProductByCategoryId(categoryId);
+                var productsByCategoryId = await productService.GetProductByCategoryId(categoryId);
                 var productsByCategoryIdResData = mapper.Map<List<ProductResponseDTO>>(productsByCategoryId);
                 if (productsByCategoryIdResData.Count>0)
                 {
@@ -139,6 +146,11 @@ namespace EcommerceApp.Controllers
             }
             catch (Exception ex)
             {
+                if (ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new CategoryErrorResponse { CategoryId = categoryId, ErrorMessage = ResponseConstants.NullOrInvalidCategoryId });
+                }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode: 500);
             }
@@ -170,7 +182,7 @@ namespace EcommerceApp.Controllers
             try
             {
                 var AddProductData = mapper.Map<Product>(productReqDTO);
-                var productDomainData = await productRepo.AddProduct(AddProductData);
+                var productDomainData = await productService.AddProduct(AddProductData);
                 var productResData = mapper.Map<ProductResponseDTO>(productDomainData);
 
                 if (productResData != null)
@@ -222,7 +234,7 @@ namespace EcommerceApp.Controllers
             try
             {
                 var updateProductData = mapper.Map<Product>(updateProductReqDTO);
-                var updateProductId = await productRepo.UpdateProduct(id, updateProductData);
+                var updateProductId = await productService.UpdateProduct(id, updateProductData);
 
                 if (updateProductId == -1)
                 {
@@ -237,6 +249,11 @@ namespace EcommerceApp.Controllers
                 {
                     logger.LogError(ex.Message, ex);
                     return BadRequest(new ProductUpdateFailResponse { ProductId = id, CategoryId = updateProductReqDTO.CategoryId, ErrorMessage = ResponseConstants.ProductUpdateFailed });
+                }
+                if(ex is ArgumentNullException)
+                {
+                    logger.LogError(ex.Message, ex);
+                    return BadRequest(new ProductUpdateFailResponse { ProductId = id, ErrorMessage = ResponseConstants.NullOrInvalidProductId });
                 }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode:500);
@@ -261,7 +278,7 @@ namespace EcommerceApp.Controllers
         {
             try
             {
-                var deleteProductId = await productRepo.DeleteProduct(id);
+                var deleteProductId = await productService.DeleteProduct(id);
                 if (deleteProductId == -1)
                 {
                     return NotFound(new ProductNotFoundResponse { ProductId = id, Message = ResponseConstants.NoRecordWithProductId });
@@ -273,7 +290,7 @@ namespace EcommerceApp.Controllers
                 if (ex is ArgumentNullException)
                 { 
                   logger.LogError(ex.Message, ex);
-                  return BadRequest(new ProductDeleteFailResponse { ProductId =id, ErrorMessage = ResponseConstants.ProductDeleteFailed });
+                  return BadRequest(new ProductDeleteFailResponse { ProductId =id, ErrorMessage = ResponseConstants.NullOrInvalidProductId });
                 }
                 logger.LogError(ex.Message, ex);
                 return Problem(ResponseConstants.ServerError,statusCode:500);

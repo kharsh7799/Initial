@@ -1,9 +1,9 @@
 ﻿using EcommerceApp.Entities.DomainModels;
 
-namespace EcommerceApp.Repositories.Contracts
+namespace EcommerceApp.Services.Contracts
 {
-    public interface IProductRepository
-    {
+    public interface IProductService
+    { 
         Task<List<Product>> GetAllProducts(string? filterByNameValue = null);
         Task<Product?> GetProductById(int id);
         Task<List<Product>?> GetProductByCategoryId(int categoryId);

@@ -30,9 +30,4 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EndPointsTest\Categories\" />
-    <Folder Include="EndPointsTest\ProductWithCategories\" />
-  </ItemGroup>
-
 </Project>

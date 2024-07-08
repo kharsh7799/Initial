@@ -54,7 +54,6 @@ namespace EcommerceApp.Repositories.Implementation
                     if (isSuccess > 0)
                     {
                         logger.LogInformation($"Product Id {id} deleted successfully");
-
                         return id;
                     }
                 }

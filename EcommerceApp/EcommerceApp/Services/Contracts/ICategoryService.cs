@@ -1,8 +1,8 @@
 ﻿using EcommerceApp.Entities.DomainModels;
 
-namespace EcommerceApp.Repositories.Contracts
+namespace EcommerceApp.Services.Contracts
 {
-    public interface ICategoryRepository
+    public interface ICategoryService
     {
         Task<List<Category>> GetAllCategories();
         Task<Category?> GetCategoryById(int id);

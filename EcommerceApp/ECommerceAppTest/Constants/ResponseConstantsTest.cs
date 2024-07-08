@@ -5,6 +5,8 @@
         public const string BadRequest = "Some error occurred.Please try again";
         public const string ServerError = "Some internal error occurred.Please try again";
         public const string NoRecord = "No records are found. Empty result";
+        public const string NullOrInvalidProductId = "Product id value can not be null, Zero and less than zero.";
+        public const string NullOrInvalidCategoryId = "Category id value can not be null, Zero and less than zero.";
 
         //products constants
         public const string NoRecordWithProductId = "No records are found with entered product id";

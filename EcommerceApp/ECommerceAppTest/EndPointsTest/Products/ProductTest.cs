@@ -1,11 +1,12 @@
 using AutoMapper;
-using EcommerceApp.Constants;
 using EcommerceApp.Controllers;
 using EcommerceApp.Entities.APIResponses;
 using EcommerceApp.Entities.DomainModels;
+using EcommerceApp.Entities.DTOs.Category;
 using EcommerceApp.Entities.DTOs.Product;
 using EcommerceApp.Mapping;
 using EcommerceApp.Repositories.Contracts;
+using EcommerceApp.Services.Contracts;
 using ECommerceAppTest.Constants;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -15,19 +16,20 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
 using System.Net;
+using static EcommerceApp.Entities.APIResponses.APICategoriesResponses;
 
 namespace ECommerceAppTest.EndPointsTest.Products
 {
     public class ProductTest
     {
-        private readonly Mock<IProductRepository> productRepositoryMock;
+        private readonly Mock<IProductService> productRepositoryMock;
         private readonly ProductsController productsController;
         private readonly IMapper mapper;
         private readonly Mock<ILogger<ProductsController>> logger;
 
         public ProductTest()
         {
-            productRepositoryMock =  new Mock<IProductRepository>();
+            productRepositoryMock =  new Mock<IProductService>();
             logger = new Mock<ILogger<ProductsController>>();
 
             var _mapper = new MapperConfiguration(mc => mc.AddProfile(new AutoMapperProfile())).CreateMapper();
@@ -74,6 +76,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
 
             //Additional assertions
             Assert.IsType<List<ProductResponseDTO>>(ProductsList);
+            Assert.Equal(productDto[0].Id, ProductsList[0].Id);
             Assert.Equal(productDto[0].Name, ProductsList[0].Name);
             Assert.Equal(productDto[0].Rating, ProductsList[0].Rating);
             Assert.Equal(productDto[0].Price, ProductsList[0].Price);
@@ -186,6 +189,27 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.IsType<ProductNotFoundResponse>(ProductResponse);
             Assert.NotEqual(productDto.Id, ProductResponse.ProductId);
             Assert.Equal(ResponseConstantsTest.NoRecordWithProductId, ProductResponse.Message);
+        }
+        [Theory]
+        [InlineData(0)]
+        public async Task Test_GetProductById_Returns_BadRequestForArgumetException(int id)
+        {
+            //Arrange
+            productRepositoryMock.Setup(p => p.GetProductById(id)).
+                Throws(new ArgumentNullException(nameof(id)));
+
+            //Act
+            var productData = await productsController.GetProductById(id); 
+            var errorResponse = productData as BadRequestObjectResult;
+            var errorContent = errorResponse?.Value as ProductDeleteFailResponse;
+
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(errorResponse);
+            Assert.IsType<BadRequestObjectResult>(errorResponse);
+            Assert.IsType<ProductDeleteFailResponse>(errorContent);
+            Assert.Equal((int)HttpStatusCode.BadRequest, errorResponse.StatusCode);
+            Assert.Equal(id, errorContent.ProductId);
+            Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, errorContent.ErrorMessage);
         }
         [Theory]
         [InlineData(4)]
@@ -316,6 +340,27 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(ResponseConstantsTest.NoRecordWithCategoryId, ProductsResult.Message);
         }
         [Theory]
+        [InlineData(0)]
+        public async Task Test_GetProductByCategoryId_Returns_BadRequestForArgumetException(int categoryId)
+        {
+            //Arrange
+            productRepositoryMock.Setup(p => p.GetProductByCategoryId(categoryId)).
+                Throws(new ArgumentNullException(nameof(categoryId)));
+
+            //Act
+            var productData = await productsController.GetProductByCategoryId(categoryId);
+            var errorResponse = productData as BadRequestObjectResult;
+            var errorContent = errorResponse?.Value as CategoryErrorResponse;
+
+            //Assert
+            Assert.IsType<BadRequestObjectResult>(errorResponse);
+            Assert.IsType<BadRequestObjectResult>(errorResponse);
+            Assert.IsType<CategoryErrorResponse>(errorContent);
+            Assert.Equal((int)HttpStatusCode.BadRequest, errorResponse.StatusCode);
+            Assert.Equal(categoryId, errorContent.CategoryId);
+            Assert.Equal(ResponseConstantsTest.NullOrInvalidCategoryId, errorContent.ErrorMessage);
+        }
+        [Theory]
         [InlineData(5)]
         public async Task Test_GetProductByCategoryId_Returns_ErrorResponse(int categoryId)
         {
@@ -364,6 +409,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             var ProductsResult = productWithCreatedResult?.Value  as ProductResponseDTO;
 
             //Asserts
+            Assert.NotNull(productData);
             Assert.NotNull(productWithCreatedResult);
             Assert.IsType<CreatedAtActionResult>(productWithCreatedResult);
 
@@ -396,11 +442,11 @@ namespace ECommerceAppTest.EndPointsTest.Products
             var ProductsBadReqResult = productWithBadReqResult?.Value as ProductAlreadyPresentResponse;
 
             Assert.IsType<BadRequestObjectResult>(productData);
-            Assert.IsType<BadRequestObjectResult>(productWithBadReqResult);
-
+            Assert.IsType<BadRequestObjectResult>(productWithBadReqResult);     
+            Assert.IsType<ProductAlreadyPresentResponse>(ProductsBadReqResult);
             Assert.Equal((int)HttpStatusCode.BadRequest, productWithBadReqResult.StatusCode);
-            Assert.Equal(productReqDTO.Name, ProductsBadReqResult?.ProductName);
-            Assert.Equal(ResponseConstantsTest.ProductAlreadyPresent, ProductsBadReqResult?.ErrorMessage);
+            Assert.Equal(productReqDTO.Name, ProductsBadReqResult.ProductName);
+            Assert.Equal(ResponseConstantsTest.ProductAlreadyPresent, ProductsBadReqResult.ErrorMessage);
         }
         [Fact]
         public async Task Test_AddProduct_Returns_BadReqResponseForDBUpdateFailure() // Not existing category id provided
@@ -423,10 +469,10 @@ namespace ECommerceAppTest.EndPointsTest.Products
 
             Assert.IsType<BadRequestObjectResult>(productData);
             Assert.IsType<BadRequestObjectResult>(productWithBadReqResult);
-
+            Assert.IsType<ProductAddFailureResponse>(ProductsBadReqResult);
             Assert.Equal((int)HttpStatusCode.BadRequest, productWithBadReqResult.StatusCode);
-            Assert.Equal(productReqDTO.CategoryId, ProductsBadReqResult?.CategoryId);
-            Assert.Equal(ResponseConstantsTest.ProductNotAdded, ProductsBadReqResult?.ErrorMessage);
+            Assert.Equal(productReqDTO.CategoryId, ProductsBadReqResult.CategoryId);
+            Assert.Equal(ResponseConstantsTest.ProductNotAdded, ProductsBadReqResult.ErrorMessage);
         }
         [Fact]
         public async Task Test_AddProduct_Returns_ServerErrorResponse()
@@ -448,8 +494,9 @@ namespace ECommerceAppTest.EndPointsTest.Products
 
             Assert.IsType<ObjectResult>(productData);
             Assert.IsType<ObjectResult>(productWithServerErrorResult);
+            Assert.IsType<ProblemDetails>(productErrorResult);
             Assert.Equal((int)HttpStatusCode.InternalServerError, productWithServerErrorResult.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, productErrorResult?.Detail);
+            Assert.Equal(ResponseConstantsTest.ServerError, productErrorResult.Detail);
         }
 
         //Update Product
@@ -548,6 +595,37 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(ResponseConstantsTest.ProductUpdateFailed, ProductUpdateFailResult.ErrorMessage);
         }
         [Theory]
+        [InlineData(0)]
+        public async Task Test_UpdateProduct_Returns_BadRequestForArgumentException(int id) //non existing category Id
+        {
+            //Arrange
+            var productReqDTO = new ProductRequestDTO
+            {
+                Name = "Nike sneaker",
+                Price = 15000,
+                Rating = 1,
+                CategoryId = 92,
+            };
+            productRepositoryMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).
+                Throws(new ArgumentNullException(nameof(id)));
+
+            //Act
+            var productData = await productsController.UpdateProduct(id, productReqDTO);
+            var productUpdateBadRequestResult = productData as BadRequestObjectResult;
+            var productErrorResult = productUpdateBadRequestResult?.Value as ProductUpdateFailResponse;
+
+            //Asserts
+            Assert.NotNull(productData);
+            Assert.NotNull(productUpdateBadRequestResult);
+            Assert.IsType<BadRequestObjectResult>(productUpdateBadRequestResult);
+            Assert.IsType<ProductUpdateFailResponse>(productErrorResult);
+            Assert.Equal((int)HttpStatusCode.BadRequest, productUpdateBadRequestResult.StatusCode);
+
+            //Additional assertions
+            Assert.Equal(id, productErrorResult.ProductId);
+            Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, productErrorResult.ErrorMessage);
+        }
+        [Theory]
         [InlineData(4)]
         public async Task Test_UpdateProduct_Returns_ServerErrorResponse(int id)
         {
@@ -644,7 +722,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
 
             //Additional assertions
             Assert.Equal(id, ProductDeleteFailResult.ProductId);
-            Assert.Equal(ResponseConstantsTest.ProductDeleteFailed, ProductDeleteFailResult.ErrorMessage);
+            Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, ProductDeleteFailResult.ErrorMessage);
         }
         [Theory]
         [InlineData(4)]
