@@ -25,20 +25,20 @@ namespace ECommerceAppTest.EndPointsTest.Categories
 {
     public class CategoriesControllerTests
     {
-        private readonly Mock<ICategoryService> categoryRepositoryMock;
+        private readonly Mock<ICategoryService> categoryServiceMock;
         private readonly CategoriesController categoriesController;
         private readonly IMapper mapper;
         private readonly Mock<ILogger<CategoriesController>> logger;
 
         public CategoriesControllerTests()
         {
-            categoryRepositoryMock = new Mock<ICategoryService>();
+            categoryServiceMock = new Mock<ICategoryService>();
             logger = new Mock<ILogger<CategoriesController>>();
 
             var _mapper = new MapperConfiguration(mc => mc.AddProfile(new AutoMapperProfile())).CreateMapper();
             mapper = _mapper;
 
-            categoriesController = new CategoriesController(categoryRepositoryMock.Object, mapper, logger.Object);
+            categoriesController = new CategoriesController(categoryServiceMock.Object, mapper, logger.Object);
         }
 
         //GetAllProducts Tests
@@ -61,7 +61,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             };
             var categoriesDto = mapper.Map<List<CategoryResponseDTO>>(categories);
 
-            categoryRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
+            categoryServiceMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
             //Act
             var categoriesData = await categoriesController.GetAllCategories();
             var categoriesWithOkObj = categoriesData as OkObjectResult;
@@ -84,7 +84,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             var categories = new List<Category>();
             var count = categories.Count;
 
-            categoryRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
+            categoryServiceMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
             //Act
             var categoriesData = await categoriesController.GetAllCategories();
             var categoriesWithOkObj = categoriesData as OkObjectResult;
@@ -105,7 +105,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_GetAllProducts_Returns_ServerErrorResponse()
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.GetAllCategories()).
+            categoryServiceMock.Setup(p => p.GetAllCategories()).
                 Throws(new Exception("Simulated internal server error"));
 
             //Act
@@ -132,7 +132,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Mobile",
             };
             var categoryDto = mapper.Map<CategoryResponseDTO>(category);
-            categoryRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(category);
+            categoryServiceMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(category);
 
             //Act
             var categoryData = await categoriesController.GetCategoryById(id);
@@ -159,7 +159,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Mobile",
             };
             var categoryDto = mapper.Map<CategoryResponseDTO>(category);
-            categoryRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync((Category?)null);
+            categoryServiceMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync((Category?)null);
 
             //Act
             var categoryData = await categoriesController.GetCategoryById(id);
@@ -180,7 +180,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_GetProductById_Returns_BadRequestForArgumetException(int id)
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.GetCategoryById(id)).
+            categoryServiceMock.Setup(p => p.GetCategoryById(id)).
                 Throws(new ArgumentNullException(nameof(id)));
 
             //Act
@@ -201,7 +201,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_GetProductById_Returns_ServerErrorResponse(int id)
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.GetCategoryById(id)).
+            categoryServiceMock.Setup(p => p.GetCategoryById(id)).
                 Throws(new Exception("Simulated internal server error"));
 
             //Act
@@ -230,7 +230,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Mobile",
             };
             var category = mapper.Map<Category>(categoryReqDTO);
-            categoryRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).ReturnsAsync(category);
+            categoryServiceMock.Setup(p => p.AddCategory(It.IsAny<Category>())).ReturnsAsync(category);
 
             //Act
             var categoryData = await categoriesController.AddCategory(categoryReqDTO);
@@ -257,7 +257,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Nike sneaker",
             };
             var category = mapper.Map<Category>(categoryReqDTO);
-            categoryRepositoryMock.Setup(p => p.AddCategory(category)).ReturnsAsync((Category?)null);
+            categoryServiceMock.Setup(p => p.AddCategory(category)).ReturnsAsync((Category?)null);
 
             //Act
             var caregoryData = await categoriesController.AddCategory(categoryReqDTO);
@@ -279,7 +279,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             {
                 Name = "Mobile"
             };
-            categoryRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).
+            categoryServiceMock.Setup(p => p.AddCategory(It.IsAny<Category>())).
             Throws(new DbUpdateException());
 
             //Act
@@ -302,7 +302,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             {
                 Name = "Mobile"
             };
-            categoryRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).Throws(new Exception("Demo Exception"));
+            categoryServiceMock.Setup(p => p.AddCategory(It.IsAny<Category>())).Throws(new Exception("Demo Exception"));
 
             //Act
             var categoryData = await categoriesController.AddCategory(categoryReqDTO);
@@ -326,7 +326,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             {
                 Name = "Mobile",
             };
-            categoryRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).ReturnsAsync(id);
+            categoryServiceMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).ReturnsAsync(id);
 
             //Act
             var categoryData = await categoriesController.UpdateCategory(id, categoryReqDTO);
@@ -355,7 +355,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Mobile",
             };
 
-            categoryRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).ReturnsAsync(returnValue);
+            categoryServiceMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).ReturnsAsync(returnValue);
 
             //Act
             var categoryData = await categoriesController.UpdateCategory(id, categoryReqDTO);
@@ -383,7 +383,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
                 Name = "Mobile",
             };
 
-            categoryRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).Throws(new DbUpdateException());
+            categoryServiceMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).Throws(new DbUpdateException());
 
             //Act
             var categoryData = await categoriesController.UpdateCategory(id, categoryReqDTO);
@@ -410,7 +410,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             {
                 Name = "Mobile",
             };
-            categoryRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).
+            categoryServiceMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).
                 Throws(new ArgumentNullException(nameof(id)));
 
             //Act
@@ -438,7 +438,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
             {
                 Name = "Mobile",
             };
-            categoryRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).Throws(new Exception());
+            categoryServiceMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).Throws(new Exception());
 
             //Act
             var categoryData = await categoriesController.UpdateCategory(id, categoryReqDTO);
@@ -460,7 +460,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_DeleteCategory_Returns_OKResponse(int id)
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.DeleteCategory(id)).ReturnsAsync(id);
+            categoryServiceMock.Setup(p => p.DeleteCategory(id)).ReturnsAsync(id);
 
             //Act
             var categoryData = await categoriesController.DeleteCategory(id);
@@ -484,7 +484,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         {
             var returnValue = -1;
             //Arrange
-            categoryRepositoryMock.Setup(p => p.DeleteCategory(id)).ReturnsAsync(returnValue);
+            categoryServiceMock.Setup(p => p.DeleteCategory(id)).ReturnsAsync(returnValue);
 
             //Act
             var categoryData = await categoriesController.DeleteCategory(id);
@@ -507,7 +507,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_DeleteCategory_Returns_BadRequestResponse(int id)
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.DeleteCategory(id)).Throws(new ArgumentNullException(nameof(id)));
+            categoryServiceMock.Setup(p => p.DeleteCategory(id)).Throws(new ArgumentNullException(nameof(id)));
 
             //Act
             var categoryData = await categoriesController.DeleteCategory(id);
@@ -530,7 +530,7 @@ namespace ECommerceAppTest.EndPointsTest.Categories
         public async Task Test_DeleteCategory_Returns_ServerErrorResponse(int id)
         {
             //Arrange
-            categoryRepositoryMock.Setup(p => p.DeleteCategory(id)).Throws(new Exception());
+            categoryServiceMock.Setup(p => p.DeleteCategory(id)).Throws(new Exception());
 
             //Act
             var categoryData = await categoriesController.DeleteCategory(id);

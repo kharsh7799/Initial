@@ -14,11 +14,11 @@ namespace EcommerceApp.Services.Implementations
             this.categoryRepository = categoryRepository;
             this.logger = logger;
         }
-        public Task<Category?> AddCategory(Category category)
+        public async Task<Category?> AddCategory(Category category)
         {
             try
             {
-                var categoryData = categoryRepository.AddCategory(category);
+                var categoryData = await categoryRepository.AddCategory(category);
                 return categoryData;
             }
             catch (Exception)
@@ -26,13 +26,13 @@ namespace EcommerceApp.Services.Implementations
                 throw;
             }
         }
-        public Task<int> DeleteCategory(int id)
+        public async Task<int> DeleteCategory(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                  var deletedCategoryData = categoryRepository.DeleteCategory(id);
+                  var deletedCategoryData = await categoryRepository.DeleteCategory(id);
                   return deletedCategoryData;
                 }
                 logger.LogInformation($"Invalid category id entered.");
@@ -44,19 +44,17 @@ namespace EcommerceApp.Services.Implementations
                 throw;
             }
         }
-
-        public Task<List<Category>> GetAllCategories()
+        public async Task<List<Category>> GetAllCategories()
         {
-           return categoryRepository.GetAllCategories();
+           return await categoryRepository.GetAllCategories();
         }
-
-        public Task<Category?> GetCategoryById(int id)
+        public async Task<Category?> GetCategoryById(int id)
         {
             try
             {
                 if (id > 0)
                 {
-                    var categoryData = categoryRepository.GetCategoryById(id);
+                    var categoryData = await categoryRepository.GetCategoryById(id);
                     return categoryData;
                 }
                 logger.LogInformation($"Invalid category id entered.");
@@ -66,15 +64,14 @@ namespace EcommerceApp.Services.Implementations
             {
                 throw;
             }
-        }
-
-        public Task<int> UpdateCategory(int id, Category category)
+        }     
+        public async Task<int> UpdateCategory(int id, Category category)
         {
             try
             {
                 if (id > 0)
                 {
-                    var updatedCategoryData = categoryRepository.DeleteCategory(id);
+                    var updatedCategoryData = await categoryRepository.UpdateCategory(id, category);
                     return updatedCategoryData;
                 }
                 logger.LogInformation($"Invalid category id entered.");

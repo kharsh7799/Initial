@@ -14,21 +14,21 @@ namespace EcommerceApp.Services.Implementations
             this.categoryWithProductsRepo = categoryWithProductsRepo;
             this.logger = logger;
         }
-        public Task<List<Category>?> GetCategoryWithProductDetails(int? categoryid = null)
+        public async Task<List<Category>?> GetCategoryWithProductDetails(int? categoryId = null)
         {
             try
             {
-                if (categoryid != null)
+                if (categoryId != null)
                 {
-                    if (categoryid > 0)
+                    if (categoryId > 0)
                     {
-                        var catWithproductsBycatId = categoryWithProductsRepo.GetCategoryWithProductDetails(categoryid);
+                        var catWithproductsBycatId = await categoryWithProductsRepo.GetCategoryWithProductDetails(categoryId);
                         return catWithproductsBycatId;
                     }
                     logger.LogInformation($"Invalid category id entered.");
-                    throw new ArgumentNullException(nameof(categoryid));
+                    throw new ArgumentNullException(nameof(categoryId));
                 }
-                var catWithproducts = categoryWithProductsRepo.GetCategoryWithProductDetails();
+                var catWithproducts = await categoryWithProductsRepo.GetCategoryWithProductDetails();
                 return catWithproducts;
             }
             catch (Exception)

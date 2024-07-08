@@ -22,20 +22,20 @@ namespace ECommerceAppTest.EndPointsTest.Products
 {
     public class ProductTest
     {
-        private readonly Mock<IProductService> productRepositoryMock;
+        private readonly Mock<IProductService> productServiceMock;
         private readonly ProductsController productsController;
         private readonly IMapper mapper;
         private readonly Mock<ILogger<ProductsController>> logger;
 
         public ProductTest()
         {
-            productRepositoryMock =  new Mock<IProductService>();
+            productServiceMock =  new Mock<IProductService>();
             logger = new Mock<ILogger<ProductsController>>();
 
             var _mapper = new MapperConfiguration(mc => mc.AddProfile(new AutoMapperProfile())).CreateMapper();
             mapper = _mapper;
 
-            productsController = new ProductsController(productRepositoryMock.Object, mapper, logger.Object);
+            productsController = new ProductsController(productServiceMock.Object, mapper, logger.Object);
         }
 
         //GetAllProducts Tests
@@ -64,7 +64,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             };
             var productDto = mapper.Map<List<ProductResponseDTO>>(products);
 
-            productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
             //Act
             var productsData = await productsController.GetAllProducts(null);
             var productsWithOkObj = productsData as OkObjectResult;
@@ -90,7 +90,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             var products = new List<Product>();
             var count = products.Count;
 
-            productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
             //Act
             var productsData = await productsController.GetAllProducts(null);
             var productsWithOkObj = productsData as OkObjectResult;
@@ -109,7 +109,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_GetAllProducts_Returns_ServerErrorResponse()
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.GetAllProducts(null)).
+            productServiceMock.Setup(p => p.GetAllProducts(null)).
                 Throws(new Exception("Simulated internal server error"));
 
             //Act
@@ -140,7 +140,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             };
             var productDto = mapper.Map<ProductResponseDTO>(product);
 
-            productRepositoryMock.Setup(p => p.GetProductById(id)).ReturnsAsync(product);
+            productServiceMock.Setup(p => p.GetProductById(id)).ReturnsAsync(product);
 
             //Act
             var productData = await productsController.GetProductById(id);
@@ -174,7 +174,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             };
             var productDto = mapper.Map<ProductResponseDTO>(product);
 
-            productRepositoryMock.Setup(p => p.GetProductById(id)).ReturnsAsync((Product?)null);
+            productServiceMock.Setup(p => p.GetProductById(id)).ReturnsAsync((Product?)null);
 
             //Act
             var productData = await productsController.GetProductById(id);
@@ -195,7 +195,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_GetProductById_Returns_BadRequestForArgumetException(int id)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.GetProductById(id)).
+            productServiceMock.Setup(p => p.GetProductById(id)).
                 Throws(new ArgumentNullException(nameof(id)));
 
             //Act
@@ -216,7 +216,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_GetProductById_Returns_ServerErrorResponse(int id)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.GetProductById(id)).
+            productServiceMock.Setup(p => p.GetProductById(id)).
                 Throws(new Exception("Simulated internal server error"));
 
             //Act
@@ -268,7 +268,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             var productDto = mapper.Map<List<ProductResponseDTO>>(products);
 
 
-            productRepositoryMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync(products);
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync(products);
 
             //Act
             var productsByCateId= await productsController.GetProductByCategoryId(categoryId);
@@ -323,7 +323,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
             };
             var productDto = mapper.Map<List<ProductResponseDTO>>(products);
 
-            productRepositoryMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync((List<Product>?)null);
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync((List<Product>?)null);
 
             //Act
             var productsByCateId = await productsController.GetProductByCategoryId(categoryId);
@@ -344,7 +344,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_GetProductByCategoryId_Returns_BadRequestForArgumetException(int categoryId)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.GetProductByCategoryId(categoryId)).
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).
                 Throws(new ArgumentNullException(nameof(categoryId)));
 
             //Act
@@ -365,7 +365,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_GetProductByCategoryId_Returns_ErrorResponse(int categoryId)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.GetProductByCategoryId(categoryId)).
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).
             Throws(new Exception("Simulated internal server error"));
             //Act
             var productsByCateId = await productsController.GetProductByCategoryId(categoryId);
@@ -401,7 +401,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
 
             var product = mapper.Map<Product>(productReqDTO);
 
-            productRepositoryMock.Setup(p => p.AddProduct(It.IsAny<Product>())).ReturnsAsync(product);
+            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).ReturnsAsync(product);
                 
             //Act
             var productData= await productsController.AddProduct(productReqDTO);
@@ -434,7 +434,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 CategoryId = 5,
             };
             var product = mapper.Map<Product>(productReqDTO);
-            productRepositoryMock.Setup(p => p.AddProduct(product)).ReturnsAsync((Product?)null);
+            productServiceMock.Setup(p => p.AddProduct(product)).ReturnsAsync((Product?)null);
 
             //Act
             var productData = await productsController.AddProduct(productReqDTO);
@@ -459,7 +459,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 55,
             };
-            productRepositoryMock.Setup(p => p.AddProduct(It.IsAny<Product>())).
+            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).
             Throws(new DbUpdateException());
 
             //Act
@@ -485,7 +485,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 5,
             };
-            productRepositoryMock.Setup(p => p.AddProduct(It.IsAny<Product>())).Throws(new Exception("Demo Exception"));
+            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).Throws(new Exception("Demo Exception"));
 
             //Act
             var productData = await productsController.AddProduct(productReqDTO);
@@ -513,7 +513,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 5,
             };
-            productRepositoryMock.Setup(p => p.UpdateProduct(id,It.IsAny<Product>())).ReturnsAsync(id);
+            productServiceMock.Setup(p => p.UpdateProduct(id,It.IsAny<Product>())).ReturnsAsync(id);
 
             //Act
             var productData = await productsController.UpdateProduct(id,productReqDTO);
@@ -544,7 +544,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 5,
             };
-            productRepositoryMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).ReturnsAsync(returnValue);
+            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).ReturnsAsync(returnValue);
 
             //Act
             var productData = await productsController.UpdateProduct(id, productReqDTO);
@@ -575,7 +575,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 CategoryId = 92,
             };
 
-            productRepositoryMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new DbUpdateException());
+            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new DbUpdateException());
 
             //Act
             var productData = await productsController.UpdateProduct(id, productReqDTO);
@@ -606,7 +606,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 92,
             };
-            productRepositoryMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).
+            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).
                 Throws(new ArgumentNullException(nameof(id)));
 
             //Act
@@ -637,7 +637,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
                 Rating = 1,
                 CategoryId = 5,
             };
-            productRepositoryMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new Exception());
+            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new Exception());
 
             //Act
             var productData = await productsController.UpdateProduct(id, productReqDTO);
@@ -659,7 +659,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_DeleteProduct_Returns_OKResponse(int id)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(id);
+            productServiceMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(id);
 
             //Act
             var productData = await productsController.DeleteProduct(id);
@@ -683,7 +683,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         {
             var returnValue = -1;
             //Arrange
-            productRepositoryMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(returnValue);
+            productServiceMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(returnValue);
 
             //Act
             var productData = await productsController.DeleteProduct(id);
@@ -706,7 +706,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_DeleteProduct_Returns_BadRequestResponse(int id) 
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.DeleteProduct(id)).Throws(new ArgumentNullException(nameof(id)));
+            productServiceMock.Setup(p => p.DeleteProduct(id)).Throws(new ArgumentNullException(nameof(id)));
 
             //Act
             var productData = await productsController.DeleteProduct(id);
@@ -729,7 +729,7 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_DeleteProduct_Returns_ServerErrorResponse(int id)
         {
             //Arrange
-            productRepositoryMock.Setup(p => p.DeleteProduct(id)).Throws(new Exception());
+            productServiceMock.Setup(p => p.DeleteProduct(id)).Throws(new Exception());
 
             //Act
             var productData = await productsController.DeleteProduct(id);

@@ -22,20 +22,20 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
 {
     public class CategoryWithProductsControllerTests
     {
-        private readonly Mock<ICategoryWithProductsService> categoryWithProductsRepoMock;
+        private readonly Mock<ICategoryWithProductsService> categoryWithProductsServiceMock;
         private readonly CategoryWithProductsController categoryWithProductsController;
         private readonly IMapper mapper;
         private readonly Mock<ILogger<CategoryWithProductsController>> logger;
 
         public CategoryWithProductsControllerTests()
         {
-            categoryWithProductsRepoMock = new Mock<ICategoryWithProductsService>();
+            categoryWithProductsServiceMock = new Mock<ICategoryWithProductsService>();
             logger = new Mock<ILogger<CategoryWithProductsController>>();
 
             var _mapper = new MapperConfiguration(mc => mc.AddProfile(new AutoMapperProfile())).CreateMapper();
             mapper = _mapper;
 
-            categoryWithProductsController = new CategoryWithProductsController(categoryWithProductsRepoMock.Object, mapper, logger.Object);
+            categoryWithProductsController = new CategoryWithProductsController(categoryWithProductsServiceMock.Object, mapper, logger.Object);
         }
         [Fact]
         public async Task Test_GetCategoryWithProductDetails_Returns_OKResponse()
@@ -77,7 +77,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
               }
             };
             var categoriesDto = mapper.Map<List<CategoryWithProductsResDTO>>(categories);
-            categoryWithProductsRepoMock.Setup(p => p.GetCategoryWithProductDetails(null)).ReturnsAsync(categories);
+            categoryWithProductsServiceMock.Setup(p => p.GetCategoryWithProductDetails(null)).ReturnsAsync(categories);
 
             //Act
             var categoryWithproductsData = await categoryWithProductsController.GetCategoryWithProductDetails(null);
@@ -99,7 +99,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
         public async Task Test_GetCategoryWithProductDetails_EmptyResultResponse()
         {
             //Arrange
-            categoryWithProductsRepoMock.Setup(p => p.GetCategoryWithProductDetails(null)).ReturnsAsync((List<Category>?)null);
+            categoryWithProductsServiceMock.Setup(p => p.GetCategoryWithProductDetails(null)).ReturnsAsync((List<Category>?)null);
 
             //Act
             var categoryData = await categoryWithProductsController.GetCategoryWithProductDetails(null);
@@ -115,7 +115,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
         public async Task Test_GetCategoryWithProductDetails_NotFoundResponse(int categoryId)
         {
             //Arrange
-            categoryWithProductsRepoMock.Setup(p => p.GetCategoryWithProductDetails(categoryId)).ReturnsAsync((List<Category>?)null);
+            categoryWithProductsServiceMock.Setup(p => p.GetCategoryWithProductDetails(categoryId)).ReturnsAsync((List<Category>?)null);
 
             //Act
             var categoryData = await categoryWithProductsController.GetCategoryWithProductDetails(categoryId);
@@ -136,7 +136,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
         public async Task Test_GetCategoryWithProductDetails_Returns_BadRequestForArgumetException(int categoryid)
         {
             //Arrange
-            categoryWithProductsRepoMock.Setup(p => p.GetCategoryWithProductDetails(categoryid)).
+            categoryWithProductsServiceMock.Setup(p => p.GetCategoryWithProductDetails(categoryid)).
                 Throws(new ArgumentNullException(nameof(categoryid)));
 
             //Act
@@ -156,7 +156,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
         public async Task Test_GetCategoryWithProductDetails_Returns_ServerErrorResponse()
         {
             //Arrange
-            categoryWithProductsRepoMock.Setup(p => p.GetCategoryWithProductDetails(null)).
+            categoryWithProductsServiceMock.Setup(p => p.GetCategoryWithProductDetails(null)).
                 Throws(new Exception("Simulated internal server error"));
 
             //Act

@@ -7,7 +7,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace EcommerceApp.CustomAttributes
 {
-    public class ValidateRequestModelAttribute:ActionFilterAttribute
+    public class ValidateRequestModelAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
