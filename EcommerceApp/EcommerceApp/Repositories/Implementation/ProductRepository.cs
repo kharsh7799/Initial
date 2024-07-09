@@ -1,22 +1,17 @@
-﻿using EcommerceApp.CustomExceptions;
-using EcommerceApp.Data;
+﻿using EcommerceApp.Data;
 using EcommerceApp.Entities.DomainModels;
 using EcommerceApp.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.OpenApi;
 
 namespace EcommerceApp.Repositories.Implementation
 {
     public class ProductRepository : IProductRepository
     {
         private readonly AppDbContext dbContext;
-        private readonly ILogger<ProductRepository> logger;
 
-        public ProductRepository(AppDbContext dbContext,ILogger<ProductRepository> logger)
+        public ProductRepository(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.logger = logger;
         }
         public async Task<Product?> AddProduct(Product product)
         {
@@ -30,18 +25,15 @@ namespace EcommerceApp.Repositories.Implementation
                     await dbContext.Products.AddAsync(product);
                     var productIsadded = await dbContext.SaveChangesAsync();
 
-                    logger.LogInformation($"Product {product.Name} added successfully");
                     return product;
                 }
-                logger.LogInformation($"Product {product.Name} is already available in system. add another another");
                 return null;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 throw;
             }
         }
-
         public async Task<int> DeleteProduct(int id)
         {
             try
@@ -51,13 +43,8 @@ namespace EcommerceApp.Repositories.Implementation
                 {
                     dbContext.Remove(product);
                     var isSuccess = await dbContext.SaveChangesAsync();
-                    if (isSuccess > 0)
-                    {
-                        logger.LogInformation($"Product Id {id} deleted successfully");
-                        return id;
-                    }
+                    return id;
                 }
-                logger.LogInformation($"Product with id = {id} is not found.");
                 return -1;
             }
             catch (Exception)
@@ -83,12 +70,10 @@ namespace EcommerceApp.Repositories.Implementation
                 var product = await dbContext.Products.FindAsync(id);
                 if (product != null)
                 {
-                    logger.LogInformation($"Product with id = {id} fetched successfully");
                     return product;
                 }
                 else
                 {
-                    logger.LogInformation($"Product with id = {id} is not found.");
                     return null;
                 }
             }
@@ -100,21 +85,15 @@ namespace EcommerceApp.Repositories.Implementation
         }
         public async Task<List<Product>?> GetProductByCategoryId(int categoryId)
         {
-            if(categoryId > 0)
-            {
                 var productsByCategoryId = dbContext.Products.Where(x => x.CategoryId == categoryId);
                 if (productsByCategoryId.Any())
                 {
-                    logger.LogInformation($"Product with categoryId = {categoryId} fetched successfully");
                     return await productsByCategoryId.ToListAsync();
                 }
                 else
                 {
-                    logger.LogInformation($"Product with id = {categoryId} is not found.");
                     return null;
                 }
-            }
-            return null;
         }
 
         public async Task<int> UpdateProduct(int id, Product product)
@@ -129,13 +108,8 @@ namespace EcommerceApp.Repositories.Implementation
                     productData.Rating = product.Rating;
                     productData.CategoryId = product.CategoryId;
                     var isSuccess = await dbContext.SaveChangesAsync();
-                    if (isSuccess > 0)
-                    {
-                        logger.LogInformation($"Product {product.Name} updated successfully");
-                        return id;
-                    }
+                    return id;
                 }
-                logger.LogInformation($"Product with id = {id} is not found.");
                 return -1;
             }
             catch (Exception)

@@ -9,6 +9,7 @@ using EcommerceApp.Services.Implementations;
 using ECommerceAppTest.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
@@ -185,8 +186,26 @@ namespace ECommerceAppTest.ServicesTests
             Assert.Equal(product.CategoryId, productData.CategoryId);
 
         }
+        [Fact]
+        public async Task Test_AddProduct_Returns_Exception()
+        {
+            //Arrange
+            var product = new Product
+            {
+                Name = "Nike sneaker",
+                Price = 15000,
+                Rating = 1,
+                CategoryId = 5,
+            };
+            _productRepositoryMock.Setup(p => p.AddProduct(It.IsAny<Product>())).Throws(new DbUpdateException());
+            //Act
+            var exception = await Assert.ThrowsAsync<DbUpdateException>(() => productService.AddProduct(product));
+            Assert.NotNull(exception);
+            Assert.IsType<DbUpdateException>(exception);
+        }
         [Theory]
         [InlineData(4)]
+
         public async Task Test_UpdateProduct_Returns_UpdatedProductId(int id)
         {
             //Arrange

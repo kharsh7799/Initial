@@ -3,6 +3,7 @@ using EcommerceApp.Repositories.Contracts;
 using EcommerceApp.Services.Contracts;
 using EcommerceApp.Services.Implementations;
 using Microsoft.CodeAnalysis.Elfie.Model.Structures;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
@@ -110,6 +111,20 @@ namespace ECommerceAppTest.ServicesTests
             Assert.IsType<Category>(categoryData);
             Assert.Equal(category.Name, categoryData.Name);
 
+        }
+        [Fact]
+        public async Task Test_AddCategory_Returns_Exception()
+        {
+            //Arrange
+            var category = new Category
+            {
+                Name = "Mobile",
+            };
+            categorytRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).Throws(new DbUpdateException());
+            //Act
+            var exception = await Assert.ThrowsAsync<DbUpdateException>(() => categoryService.AddCategory(category));
+            Assert.NotNull(exception);
+            Assert.IsType<DbUpdateException>(exception);
         }
         [Theory]
         [InlineData(4)]

@@ -120,7 +120,7 @@ namespace ECommerceAppTest.EndPointsTest.CategoryWithProducts
             //Act
             var categoryData = await categoryWithProductsController.GetCategoryWithProductDetails(categoryId);
             var notFoundDataResult = categoryData as NotFoundObjectResult;
-            var notFoundDataResultWithValue = notFoundDataResult.Value as CategoryNotFoundResponse;
+            var notFoundDataResultWithValue = notFoundDataResult?.Value as CategoryNotFoundResponse;
             //Assert
             Assert.IsType<NotFoundObjectResult>(categoryData);
             Assert.IsType<NotFoundObjectResult>(notFoundDataResult);

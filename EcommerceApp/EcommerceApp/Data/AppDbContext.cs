@@ -1,8 +1,10 @@
 ﻿using EcommerceApp.Entities.DomainModels;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EcommerceApp.Data
 {
+    [ExcludeFromCodeCoverage]
     public class AppDbContext: DbContext
     {
         public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions):base(dbContextOptions)

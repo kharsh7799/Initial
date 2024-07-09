@@ -8,12 +8,9 @@ namespace EcommerceApp.Repositories.Implementation
     public class CategoryRepository : ICategoryRepository
     {
         private readonly AppDbContext dbContext;
-        private readonly ILogger<CategoryRepository> logger;
-
-        public CategoryRepository(AppDbContext dbContext, ILogger<CategoryRepository> logger)
+        public CategoryRepository(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.logger = logger;
         }
         public async Task<Category?> AddCategory(Category category)
         {
@@ -26,11 +23,8 @@ namespace EcommerceApp.Repositories.Implementation
                 {
                     await dbContext.Categories.AddAsync(category);
                     var categoryIsadded = await dbContext.SaveChangesAsync();
-
-                    logger.LogInformation($"category {category.Name} added successfully");
                     return category;
                 }
-                logger.LogInformation($"category {category.Name} is already available in system. add another category");
                 return null;
             }
             catch (Exception)
@@ -48,13 +42,8 @@ namespace EcommerceApp.Repositories.Implementation
                 {
                     dbContext.Remove(category);
                     var isSuccess = await dbContext.SaveChangesAsync();
-                    if (isSuccess > 0)
-                    {
-                        logger.LogInformation($"category Id {id} deleted successfully");
-                        return id;
-                    }
+                    return id;
                 }
-                logger.LogInformation($"category with id = {id} is not found.");
                 return -1;
             }
             catch (Exception)
@@ -73,12 +62,10 @@ namespace EcommerceApp.Repositories.Implementation
             var category = await dbContext.Categories.FindAsync(id);
             if (category != null)
             {
-                logger.LogInformation($"category with id = {id} fetched successfully");
                 return category;
             }
             else
             {
-                logger.LogInformation($"category with id = {id} is not found.");
                 return null;
             }
         }
@@ -92,13 +79,8 @@ namespace EcommerceApp.Repositories.Implementation
                 {
                     categoryData.Name = category.Name;
                     var isSuccess = await dbContext.SaveChangesAsync();
-                    if (isSuccess > 0)
-                    {
-                        logger.LogInformation($"category {category.Name} updated successfully");
-                        return id;
-                    }
+                    return id;
                 }
-                logger.LogInformation($"category with id = {id} is not found.");
                 return -1;
             }
             catch (Exception)

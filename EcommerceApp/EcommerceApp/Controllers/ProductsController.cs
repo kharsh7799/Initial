@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
+using EcommerceApp.Constants;
 using EcommerceApp.CustomAttributes;
-using EcommerceApp.CustomExceptions;
+using EcommerceApp.Entities.APIResponses;
 using EcommerceApp.Entities.DomainModels;
 using EcommerceApp.Entities.DTOs.Product;
-using EcommerceApp.Repositories.Contracts;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.HttpResults;
+using EcommerceApp.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using EcommerceApp.Constants;
-using EcommerceApp.Entities.APIResponses;
 using static EcommerceApp.Entities.APIResponses.APICategoriesResponses;
-using EcommerceApp.Services.Contracts;
 
 namespace EcommerceApp.Controllers
 {

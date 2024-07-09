@@ -9,12 +9,9 @@ namespace EcommerceApp.Repositories.Implementation
     public class CategoryWithProductsRepo : ICategoryWithProductsRepo
     {
         private readonly AppDbContext dbContext;
-        private readonly ILogger<CategoryWithProductsRepo> logger;
-
-        public CategoryWithProductsRepo(AppDbContext dbContext, ILogger<CategoryWithProductsRepo> logger)
+        public CategoryWithProductsRepo(AppDbContext dbContext)
         {
             this.dbContext = dbContext;
-            this.logger = logger;
         }
         public async Task<List<Category>?> GetCategoryWithProductDetails(int? categoryid = null)
         {
@@ -28,12 +25,10 @@ namespace EcommerceApp.Repositories.Implementation
                     return await categoryWithProducts.ToListAsync();
                 }
 
-                logger.LogInformation($"category with id = {categoryid} fetched successfully");
                 return await categoriesWithproducts.ToListAsync();
             }
             else
             {
-                logger.LogInformation($"category with id = {categoryid} is not found.");
                 return null;
             }
         }

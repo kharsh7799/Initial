@@ -42,7 +42,7 @@ namespace ECommerceAppTest.ServicesTests
                     Name = "Nike sneaker",
                     Price=15000,
                     Rating=1,
-                    CategoryId=5,
+                    CategoryId=1,
                   }
                 }
               },
@@ -93,7 +93,7 @@ namespace ECommerceAppTest.ServicesTests
                     Name = "Nike sneaker",
                     Price=15000,
                     Rating=1,
-                    CategoryId=5,
+                    CategoryId=1,
                   }
                 }
               },

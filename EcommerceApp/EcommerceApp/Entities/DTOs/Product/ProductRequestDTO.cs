@@ -17,9 +17,7 @@ namespace EcommerceApp.Entities.DTOs.Product
         /// Product Price
         /// </summary>
         [Required(ErrorMessage = "Price filed is required")]
-        [DataType(DataType.Currency)]
-        [RegularExpression(@"^₹?\s?\d{1,3}(?:,?\d{3})*(?:\.\d{1,2})?$", ErrorMessage = "Entered price is not valid")]
-        
+        [Range(1.00, double.MaxValue, ErrorMessage = "Entered price is not valid")]
         public decimal Price { get; set; }
 
         /// <summary>
