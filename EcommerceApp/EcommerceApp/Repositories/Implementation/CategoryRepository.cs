@@ -12,82 +12,42 @@ namespace EcommerceApp.Repositories.Implementation
         {
             this.dbContext = dbContext;
         }
-        public async Task<Category?> AddCategory(Category category)
+        public async Task<Category> AddCategory(Category category)
         {
-            try
-            {
-                //verifying record is already present or not
-                var isAdd = await dbContext.Categories.AnyAsync(x => x.Name == category.Name);
-
-                if (!isAdd)
-                {
-                    await dbContext.Categories.AddAsync(category);
-                    var categoryIsadded = await dbContext.SaveChangesAsync();
-                    return category;
-                }
-                return null;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            await dbContext.Categories.AddAsync(category);
+            await dbContext.SaveChangesAsync();
+            return category;
         }
-
-        public async Task<int> DeleteCategory(int id)
+        public async Task<int> DeleteCategory(Category category)
         {
-            try
-            {
-                var category = await dbContext.Categories.FindAsync(id);
-                if (category != null)
-                {
-                    dbContext.Remove(category);
-                    var isSuccess = await dbContext.SaveChangesAsync();
-                    return id;
-                }
-                return -1;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            dbContext.Categories.Remove(category);
+            await dbContext.SaveChangesAsync();
+            return category.Id;
         }
         public async Task<List<Category>> GetAllCategories()
         {
-            var categories = await dbContext.Categories.ToListAsync();
-            return categories;
+            return await dbContext.Categories.ToListAsync();
         }
-
         public async Task<Category?> GetCategoryById(int id)
         {
-            var category = await dbContext.Categories.FindAsync(id);
-            if (category != null)
-            {
-                return category;
-            }
-            else
-            {
-                return null;
-            }
+            return await dbContext.Categories.FindAsync(id);
         }
-
-        public async Task<int> UpdateCategory(int id, Category category)
+        public async Task<int> UpdateCategory(Category category)
         {
-            try
-            {
-                var categoryData = await dbContext.Categories.FindAsync(id);
-                if (categoryData != null)
-                {
-                    categoryData.Name = category.Name;
-                    var isSuccess = await dbContext.SaveChangesAsync();
-                    return id;
-                }
-                return -1;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            dbContext.Categories.Update(category);
+            await dbContext.SaveChangesAsync();
+            return category.Id;
+        }
+        public async Task<List<Category>> GetAllCategoriesWithProducts()
+        {
+         return await dbContext.Categories.Include(cat => cat.Products).ToListAsync();
+        }
+        public async Task<List<Category>> GetCategoryWithProducts(int categoryId)
+        {
+            var categories = dbContext.Categories.Include(cat => cat.Products);
+            return  await categories.Where(x => x.Id == categoryId).ToListAsync();
         }
 
     }
 }
+

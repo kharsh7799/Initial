@@ -11,6 +11,8 @@
 
         //products constants
         public const string NoRecordWithProductId = "No records are found with entered product id";
+        public const string CategoryIdNotPresent = "Entered category id is not found.Please enter correct vategory id";
+
         public const string ProductAlreadyPresent = "Product with provided name is alreday present. add another product";
         public const string ProductNotAdded = "Product is not added. Insertion failed, Please Check CategoryId provided.";
         public const string ProductUpdateSuccess = "Product details are updated successfully.";

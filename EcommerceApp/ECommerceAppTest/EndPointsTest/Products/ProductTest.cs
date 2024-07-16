@@ -8,6 +8,7 @@ using EcommerceApp.Mapping;
 using EcommerceApp.Repositories.Contracts;
 using EcommerceApp.Services.Contracts;
 using ECommerceAppTest.Constants;
+using ECommerceAppTest.DataSetUp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using static EcommerceApp.Entities.APIResponses.APICategoriesResponses;
 
@@ -26,6 +28,11 @@ namespace ECommerceAppTest.EndPointsTest.Products
         private readonly ProductsController productsController;
         private readonly IMapper mapper;
         private readonly Mock<ILogger<ProductsController>> logger;
+        private readonly InitialProductDataSetUp productDataSetUp;
+        private readonly List<Product> products;
+        private readonly List<Category> category;
+        private readonly ProductRequestDTO productRequestDTO;
+        private readonly ProductResponseDTO productResponseDTO;
 
         public ProductTest()
         {
@@ -36,35 +43,23 @@ namespace ECommerceAppTest.EndPointsTest.Products
             mapper = _mapper;
 
             productsController = new ProductsController(productServiceMock.Object, mapper, logger.Object);
+            productDataSetUp = new InitialProductDataSetUp();
+            this.products = productDataSetUp.ProductList;
+            this.productRequestDTO=productDataSetUp.ProductRequestDTO;
+            this.productResponseDTO=productDataSetUp.ProductResponseDTO;
+            this.category = productDataSetUp.CategoryList;
         }
-
-        //GetAllProducts Tests
+        private Product? GetProductById(int id)
+        {
+            return products?.Find(x => x.Id == id);
+        }
         [Fact]
         public async Task Test_GetAllProducts_Returns_OKResponse()
         {
             //Arrange
-            var products = new List<Product>()
-            {
-              new Product
-              {
-                Id = 1,
-                Name = "Nike sneaker",
-                Price=15000,
-                Rating=1,
-                CategoryId=5,
-              },
-              new Product
-              {
-                Id = 2,
-                Name = "Adidas sports",
-                Price=2000,
-                Rating=2,
-                CategoryId=2,
-              },
-            };
+            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
             var productDto = mapper.Map<List<ProductResponseDTO>>(products);
 
-            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
             //Act
             var productsData = await productsController.GetAllProducts(null);
             var productsWithOkObj = productsData as OkObjectResult;
@@ -73,74 +68,42 @@ namespace ECommerceAppTest.EndPointsTest.Products
             //Assert
             Assert.IsType<OkObjectResult>(productsWithOkObj);
             Assert.Equal((int)HttpStatusCode.OK, productsWithOkObj.StatusCode);
-
-            //Additional assertions
             Assert.IsType<List<ProductResponseDTO>>(ProductsList);
+
             Assert.Equal(productDto[0].Id, ProductsList[0].Id);
             Assert.Equal(productDto[0].Name, ProductsList[0].Name);
             Assert.Equal(productDto[0].Rating, ProductsList[0].Rating);
             Assert.Equal(productDto[0].Price, ProductsList[0].Price);
-            Assert.Equal(2,ProductsList.Count);
-
+            Assert.Equal(productDto.Count, ProductsList.Count);
         }
         [Fact]
-        public async Task Test_GetAllProducts_Returns_OKResponseWithEmptyResult()
+        public async Task Test_GetAllProducts_Returns_NotFoundWithEmptyResult()
         {
+            var productEmptyData = new List<Product>(); 
             //Arrange
-            var products = new List<Product>();
-            var count = products.Count;
-
-            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+            productServiceMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(productEmptyData);
             //Act
             var productsData = await productsController.GetAllProducts(null);
-            var productsWithOkObj = productsData as OkObjectResult;
-            var ProductsList = productsWithOkObj?.Value as AllProductsResponse;
+            var productsWithNotFoundObj = productsData as NotFoundObjectResult;
+            var ProductsList = productsWithNotFoundObj?.Value as AllProductsResponse;
 
             //Assert
-            Assert.IsType<OkObjectResult>(productsWithOkObj);
-            Assert.Equal((int)HttpStatusCode.OK, productsWithOkObj.StatusCode);
-
-            //Additional assertions
+            Assert.IsType<NotFoundObjectResult>(productsWithNotFoundObj);
+            Assert.Equal((int)HttpStatusCode.NotFound, productsWithNotFoundObj.StatusCode);
             Assert.Equal(ResponseConstantsTest.NoRecord, ProductsList?.Message);
-            Assert.Equal(count, ProductsList?.ProductCount);
+            Assert.Equal(0, ProductsList?.ProductCount);
 
-        }
-        [Fact]
-        public async Task Test_GetAllProducts_Returns_ServerErrorResponse()
-        {
-            //Arrange
-            productServiceMock.Setup(p => p.GetAllProducts(null)).
-                Throws(new Exception("Simulated internal server error"));
-
-            //Act
-            var productData = await productsController.GetAllProducts(null);
-            var errorResponse = productData as ObjectResult;
-            var errorContent = errorResponse?.Value as ProblemDetails;
-           
-            //Assert
-            Assert.IsType<ObjectResult>(productData);
-            Assert.IsType<ObjectResult>(errorResponse);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, errorResponse.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, errorContent?.Detail);
         }
 
         //GetProductByID Tests
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_GetProductById_Returns_OKResponse(int id)
+        [Fact]
+        public async Task Test_GetProductById_Returns_OKResponse()
         {
             //Arrange
-            var product = new Product
-            {
-                Id = 4,
-                Name = "LG",
-                Price = 15000,
-                Rating = 4,
-                CategoryId = 3,
-            };
-            var productDto = mapper.Map<ProductResponseDTO>(product);
-
+            var id = 4;
+            var product = GetProductById(id);
             productServiceMock.Setup(p => p.GetProductById(id)).ReturnsAsync(product);
+            var productDto = mapper.Map<ProductResponseDTO>(product);
 
             //Act
             var productData = await productsController.GetProductById(id);
@@ -150,8 +113,6 @@ namespace ECommerceAppTest.EndPointsTest.Products
             //Assert
             Assert.IsType<OkObjectResult>(productWithOkObj);
             Assert.Equal((int)HttpStatusCode.OK, productWithOkObj.StatusCode);
-
-            //Additional assertions
             Assert.IsType<ProductResponseDTO>(productResult);
             Assert.Equal(productDto.Id, productResult.Id);
             Assert.Equal(productDto.Name, productResult.Name);
@@ -159,21 +120,11 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(productDto.Price, productResult.Price);
             Assert.Equal(productDto.CategoryId, productResult.CategoryId);
         }
-        [Theory]
-        [InlineData(200)]
-        public async Task Test_GetProductById_Returns_NotFoundResponse(int id)
+        [Fact]
+        public async Task Test_GetProductById_Returns_NotFoundResponse()
         {
             //Arrange
-            var product = new Product
-            {
-                Id = 4,
-                Name = "LG",
-                Price = 15000,
-                Rating = 4,
-                CategoryId = 3,
-            };
-            var productDto = mapper.Map<ProductResponseDTO>(product);
-
+            var id = 456;
             productServiceMock.Setup(p => p.GetProductById(id)).ReturnsAsync((Product?)null);
 
             //Act
@@ -184,146 +135,68 @@ namespace ECommerceAppTest.EndPointsTest.Products
             //Assert
             Assert.IsType<NotFoundObjectResult>(productNotFound);
             Assert.Equal((int)HttpStatusCode.NotFound, productNotFound.StatusCode);
-
-            //Additional assertions
             Assert.IsType<ProductNotFoundResponse>(ProductResponse);
-            Assert.NotEqual(productDto.Id, ProductResponse.ProductId);
+            Assert.Equal(id, ProductResponse.ProductId);
             Assert.Equal(ResponseConstantsTest.NoRecordWithProductId, ProductResponse.Message);
         }
         [Theory]
+        [InlineData(-976)]
+        [InlineData(-80)]
         [InlineData(0)]
-        public async Task Test_GetProductById_Returns_BadRequestForArgumetException(int id)
+        public async Task Test_GetProductById_Returns_BadRequest_WhenInvalidIdProvided(int id)
         {
             //Arrange
-            productServiceMock.Setup(p => p.GetProductById(id)).
-                Throws(new ArgumentNullException(nameof(id)));
-
             //Act
             var productData = await productsController.GetProductById(id); 
             var errorResponse = productData as BadRequestObjectResult;
-            var errorContent = errorResponse?.Value as ProductDeleteFailResponse;
+            var errorContent = errorResponse?.Value as ProductIdInvalidResponse;
 
             //Assert
+            Assert.IsType<BadRequestObjectResult>(productData);
             Assert.IsType<BadRequestObjectResult>(errorResponse);
-            Assert.IsType<BadRequestObjectResult>(errorResponse);
-            Assert.IsType<ProductDeleteFailResponse>(errorContent);
+            Assert.IsType<ProductIdInvalidResponse>(errorContent);
             Assert.Equal((int)HttpStatusCode.BadRequest, errorResponse.StatusCode);
             Assert.Equal(id, errorContent.ProductId);
             Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, errorContent.ErrorMessage);
-        }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_GetProductById_Returns_ServerErrorResponse(int id)
-        {
-            //Arrange
-            productServiceMock.Setup(p => p.GetProductById(id)).
-                Throws(new Exception("Simulated internal server error"));
-
-            //Act
-            var productData = await productsController.GetProductById(id); //valid id passed
-            var errorResponse = productData as ObjectResult;
-            var errorContent = errorResponse?.Value as ProblemDetails;
-
-            //Assert
-            Assert.IsType<ObjectResult>(productData); 
-            Assert.IsType<ObjectResult>(errorResponse);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, errorResponse.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, errorContent?.Detail);
+            productServiceMock.Verify();
         }
 
         //GetProductsByCategoryId tests
 
-        [Theory]
-        [InlineData(5)]
-        public async Task Test_GetProductByCategoryId_Returns_OKResponse(int categoryId)
+        [Fact]
+        public async Task Test_GetProductByCategoryId_Returns_OKResponse()
         {
             //Arrange
-            var products = new List<Product>()
-            {
-              new Product
-              {
-                Id = 1,
-                Name = "Nike sneaker",
-                Price=15000,
-                Rating=1,
-                CategoryId=5,
-              },
-              new Product
-              {
-                Id = 2,
-                Name = "Adidas sports",
-                Price=2000,
-                Rating=2,
-                CategoryId=5,
-              },
-              new Product
-              {
-                Id = 3,
-                Name = "LG",
-                Price = 15000,
-                Rating = 4,
-                CategoryId = 5,
-              }
-            };
-            var productDto = mapper.Map<List<ProductResponseDTO>>(products);
-
-
-            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync(products);
+            var categoryId = 1;
+            var productList = products.Where(x => x.CategoryId == categoryId).ToList();
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync(productList);
+            var productsDto = mapper.Map<List<ProductResponseDTO>>(productList);
 
             //Act
-            var productsByCateId= await productsController.GetProductByCategoryId(categoryId);
+            var productsByCateId = await productsController.GetProductByCategoryId(categoryId);
             var productsByCatIdWithOkObj = productsByCateId as OkObjectResult;
             var ProductsResult = productsByCatIdWithOkObj?.Value as List<ProductResponseDTO>;
 
             //Assert
             Assert.IsType<OkObjectResult>(productsByCatIdWithOkObj);
             Assert.Equal((int)HttpStatusCode.OK, productsByCatIdWithOkObj.StatusCode);
-
             //Additional assertions
             Assert.IsType<List<ProductResponseDTO>>(ProductsResult);
-            Assert.Equal(productDto[0].Id, ProductsResult[0].Id);
-            Assert.Equal(productDto[0].Name, ProductsResult[0].Name);
-            Assert.Equal(productDto[0].Rating, ProductsResult[0].Rating);
-            Assert.Equal(productDto[0].Price, ProductsResult[0].Price);
-            Assert.Equal(productDto[0].CategoryId, ProductsResult[0].CategoryId);
-
+            Assert.Equal(productsDto[0].Id, ProductsResult[0].Id);
+            Assert.Equal(productsDto[0].Name, ProductsResult[0].Name);
+            Assert.Equal(productsDto[0].Rating, ProductsResult[0].Rating);
+            Assert.Equal(productsDto[0].Price, ProductsResult[0].Price);
+            Assert.Equal(productsDto[0].CategoryId, ProductsResult[0].CategoryId);
+            Assert.Equal(productList.Count,ProductsResult.Count);                     
 
         }
-        [Theory]
-        [InlineData(400)]
-        public async Task Test_GetProductByCategoryId_Returns_NotFoundResponse(int categoryId)
+        [Fact]
+        public async Task Test_GetProductByCategoryId_Returns_NotFoundResponse()
         {
             //Arrange
-            var products = new List<Product>()
-            {
-              new Product
-              {
-                Id = 1,
-                Name = "Nike sneaker",
-                Price=15000,
-                Rating=1,
-                CategoryId=5,
-              },
-              new Product
-              {
-                Id = 2,
-                Name = "Adidas sports",
-                Price=2000,
-                Rating=2,
-                CategoryId=5,
-              },
-              new Product
-              {
-                Id = 3,
-                Name = "LG",
-                Price = 15000,
-                Rating = 4,
-                CategoryId = 5,
-              }
-            };
-            var productDto = mapper.Map<List<ProductResponseDTO>>(products);
-
-            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync((List<Product>?)null);
+            var categoryId = 400;
+            var productsData = new List<Product>();
+            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).ReturnsAsync(productsData);
 
             //Act
             var productsByCateId = await productsController.GetProductByCategoryId(categoryId);
@@ -333,50 +206,28 @@ namespace ECommerceAppTest.EndPointsTest.Products
             //Assert
             Assert.IsType<NotFoundObjectResult>(productsByCatINotFoundObj);
             Assert.Equal((int)HttpStatusCode.NotFound, productsByCatINotFoundObj.StatusCode);
-
-            //Additional assertions
             Assert.IsType<ProductNotFoundByCategory>(ProductsResult);
-            Assert.NotEqual(productDto[0].CategoryId, ProductsResult.CategoryId);
+            Assert.Equal(categoryId, ProductsResult.CategoryId);
             Assert.Equal(ResponseConstantsTest.NoRecordWithCategoryId, ProductsResult.Message);
         }
         [Theory]
         [InlineData(0)]
-        public async Task Test_GetProductByCategoryId_Returns_BadRequestForArgumetException(int categoryId)
+        [InlineData(-47)]
+        public async Task Test_GetProductByCategoryId_Returns_BadRequest_WhenInvalidIdProvided(int categoryId)
         {
             //Arrange
-            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).
-                Throws(new ArgumentNullException(nameof(categoryId)));
-
             //Act
             var productData = await productsController.GetProductByCategoryId(categoryId);
             var errorResponse = productData as BadRequestObjectResult;
             var errorContent = errorResponse?.Value as CategoryErrorResponse;
 
             //Assert
-            Assert.IsType<BadRequestObjectResult>(errorResponse);
+            Assert.IsType<BadRequestObjectResult>(productData);
             Assert.IsType<BadRequestObjectResult>(errorResponse);
             Assert.IsType<CategoryErrorResponse>(errorContent);
             Assert.Equal((int)HttpStatusCode.BadRequest, errorResponse.StatusCode);
             Assert.Equal(categoryId, errorContent.CategoryId);
             Assert.Equal(ResponseConstantsTest.NullOrInvalidCategoryId, errorContent.ErrorMessage);
-        }
-        [Theory]
-        [InlineData(5)]
-        public async Task Test_GetProductByCategoryId_Returns_ErrorResponse(int categoryId)
-        {
-            //Arrange
-            productServiceMock.Setup(p => p.GetProductByCategoryId(categoryId)).
-            Throws(new Exception("Simulated internal server error"));
-            //Act
-            var productsByCateId = await productsController.GetProductByCategoryId(categoryId);
-            var productsByCatIdErrorResponse = productsByCateId as ObjectResult;
-            var ProductsErrorContent = productsByCatIdErrorResponse?.Value as ProblemDetails;
-
-            //Assert
-            Assert.IsType<ObjectResult>(productsByCateId);
-            Assert.IsType<ObjectResult>(productsByCatIdErrorResponse);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, productsByCatIdErrorResponse.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, ProductsErrorContent?.Detail);
         }
 
         //AddProduct tests
@@ -384,27 +235,11 @@ namespace ECommerceAppTest.EndPointsTest.Products
         public async Task Test_AddProduct_Returns_CreatedResponse()
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-            var productResDTO = new ProductResponseDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-
-            var product = mapper.Map<Product>(productReqDTO);
-
-            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).ReturnsAsync(product);
-                
+            var productModel = mapper.Map<Product>(productRequestDTO);
+            productServiceMock.Setup(p => p.IsCategoryPresent(productRequestDTO.CategoryId)).ReturnsAsync(category.Exists(x => x.Id == productRequestDTO.CategoryId));
+            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).ReturnsAsync(productModel);
             //Act
-            var productData= await productsController.AddProduct(productReqDTO);
+            var productData = await productsController.AddProduct(productRequestDTO);
             var productWithCreatedResult = productData as CreatedAtActionResult;
             var ProductsResult = productWithCreatedResult?.Value  as ProductResponseDTO;
 
@@ -416,28 +251,21 @@ namespace ECommerceAppTest.EndPointsTest.Products
             var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(productData);
             Assert.Equal((int)HttpStatusCode.Created, createdAtActionResult.StatusCode);
             Assert.Equal(nameof(ProductsController.GetProductById), createdAtActionResult.ActionName);
-            Assert.Equal(productResDTO.Name, ProductsResult?.Name);
-            Assert.Equal(productResDTO.Price, ProductsResult?.Price);
-            Assert.Equal(productResDTO.Rating, ProductsResult?.Rating);
-            Assert.Equal(productResDTO.CategoryId, ProductsResult?.CategoryId);
-
+            Assert.Equal(productResponseDTO.Name, ProductsResult?.Name);
+            Assert.Equal(productResponseDTO.Price, ProductsResult?.Price);
+            Assert.Equal(productResponseDTO.Rating, ProductsResult?.Rating);
+            Assert.Equal(productResponseDTO.CategoryId, ProductsResult?.CategoryId);
         }
         [Fact]
-        public async Task Test_AddProduct_Returns_BadRequestResponse() //If same product is already present
+        public async Task Test_AddProduct_Returns_BadRequestResponse_WhenProductIsAlreadyPresent() //If same product is already present
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-            var product = mapper.Map<Product>(productReqDTO);
-            productServiceMock.Setup(p => p.AddProduct(product)).ReturnsAsync((Product?)null);
+            var productModel = mapper.Map<Product>(productRequestDTO);
+            productServiceMock.Setup(p => p.IsCategoryPresent(productRequestDTO.CategoryId)).ReturnsAsync(category.Exists(x => x.Id == productRequestDTO.CategoryId));
+            productServiceMock.Setup(p => p.AddProduct(productModel)).ReturnsAsync((Product?)null);
 
             //Act
-            var productData = await productsController.AddProduct(productReqDTO);
+            var productData = await productsController.AddProduct(productRequestDTO);
             var productWithBadReqResult = productData as BadRequestObjectResult;
             var ProductsBadReqResult = productWithBadReqResult?.Value as ProductAlreadyPresentResponse;
 
@@ -445,78 +273,42 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.IsType<BadRequestObjectResult>(productWithBadReqResult);     
             Assert.IsType<ProductAlreadyPresentResponse>(ProductsBadReqResult);
             Assert.Equal((int)HttpStatusCode.BadRequest, productWithBadReqResult.StatusCode);
-            Assert.Equal(productReqDTO.Name, ProductsBadReqResult.ProductName);
+            Assert.Equal(productRequestDTO.Name, ProductsBadReqResult.ProductName);
             Assert.Equal(ResponseConstantsTest.ProductAlreadyPresent, ProductsBadReqResult.ErrorMessage);
         }
-        [Fact]
-        public async Task Test_AddProduct_Returns_BadReqResponseForDBUpdateFailure() // Not existing category id provided
+        [Theory]
+        [InlineData(225)]
+        [InlineData(500)]
+        public async Task Test_AddProduct_Returns_NotFoundResponse_WhenCategoryIdIsNotPresent(int categoryId) // Not existing category id provided
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Maggi",
-                Price = 100,
-                Rating = 1,
-                CategoryId = 55,
-            };
-            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).
-            Throws(new DbUpdateException());
+            productRequestDTO.CategoryId = categoryId;
+            productServiceMock.Setup(p => p.IsCategoryPresent(productRequestDTO.CategoryId)).ReturnsAsync(category.Exists(x =>x.Id==productRequestDTO.CategoryId));
 
             //Act
-            var productData = await productsController.AddProduct(productReqDTO);
-            var productWithBadReqResult = productData as BadRequestObjectResult;
-            var ProductsBadReqResult = productWithBadReqResult?.Value as ProductAddFailureResponse;
+            var productData = await productsController.AddProduct(productRequestDTO);
+            var productWithNotFoundResult = productData as NotFoundObjectResult;
+            var ProductsResult = productWithNotFoundResult?.Value as ProductAddFailureResponse;
 
-            Assert.IsType<BadRequestObjectResult>(productData);
-            Assert.IsType<BadRequestObjectResult>(productWithBadReqResult);
-            Assert.IsType<ProductAddFailureResponse>(ProductsBadReqResult);
-            Assert.Equal((int)HttpStatusCode.BadRequest, productWithBadReqResult.StatusCode);
-            Assert.Equal(productReqDTO.CategoryId, ProductsBadReqResult.CategoryId);
-            Assert.Equal(ResponseConstantsTest.ProductNotAdded, ProductsBadReqResult.ErrorMessage);
-        }
-        [Fact]
-        public async Task Test_AddProduct_Returns_ServerErrorResponse()
-        {
-            //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-            productServiceMock.Setup(p => p.AddProduct(It.IsAny<Product>())).Throws(new Exception("Demo Exception"));
-
-            //Act
-            var productData = await productsController.AddProduct(productReqDTO);
-            var productWithServerErrorResult = productData as ObjectResult;
-            var productErrorResult = productWithServerErrorResult?.Value as ProblemDetails;
-
-            Assert.IsType<ObjectResult>(productData);
-            Assert.IsType<ObjectResult>(productWithServerErrorResult);
-            Assert.IsType<ProblemDetails>(productErrorResult);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, productWithServerErrorResult.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, productErrorResult.Detail);
+            Assert.IsType<NotFoundObjectResult>(productData);
+            Assert.IsType<NotFoundObjectResult>(productWithNotFoundResult);
+            Assert.IsType<ProductAddFailureResponse>(ProductsResult);
+            Assert.Equal((int)HttpStatusCode.NotFound, productWithNotFoundResult.StatusCode);
+            Assert.Equal(productRequestDTO.CategoryId, ProductsResult.CategoryId);
+            Assert.Equal(ResponseConstantsTest.CategoryIdNotPresent, ProductsResult.ErrorMessage);
         }
 
         //Update Product
 
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_UpdateProduct_Returns_OKResponse(int id)
+        [Fact]
+        public async Task Test_UpdateProduct_Returns_OKResponse()
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
+            var id = 4;
             productServiceMock.Setup(p => p.UpdateProduct(id,It.IsAny<Product>())).ReturnsAsync(id);
 
             //Act
-            var productData = await productsController.UpdateProduct(id,productReqDTO);
+            var productData = await productsController.UpdateProduct(id,productRequestDTO);
             var productUpdateOkObjResult = productData as OkObjectResult;
             var ProductsSuccessResult = productUpdateOkObjResult?.Value as ProductSuccessResponse;
 
@@ -531,23 +323,16 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(id, ProductsSuccessResult.ProductId);
             Assert.Equal(ResponseConstantsTest.ProductUpdateSuccess, ProductsSuccessResult.Message);
         }
-        [Theory]
-        [InlineData(78)]
-        public async Task Test_UpdateProduct_Returns_NotFoundResponse(int id)
+        [Fact]
+        public async Task Test_UpdateProduct_Returns_NotFoundResponse_WhenProvidedIdIsNotPresent()
         {
+            var id = 400;
             var returnValue = -1;
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
             productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).ReturnsAsync(returnValue);
 
             //Act
-            var productData = await productsController.UpdateProduct(id, productReqDTO);
+            var productData = await productsController.UpdateProduct(id, productRequestDTO);
             var productUpdateNotFoundResult = productData as NotFoundObjectResult;
             var ProductsUpdateFailResult = productUpdateNotFoundResult?.Value as ProductNotFoundResponse;
 
@@ -562,55 +347,40 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(id, ProductsUpdateFailResult.ProductId);
             Assert.Equal(ResponseConstantsTest.NoRecordWithProductId, ProductsUpdateFailResult.Message);
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_UpdateProduct_Returns_BadRequestResponse(int id) //non existing category Id
+        [Fact]
+        public async Task Test_UpdateProduct_Returns_NotFound_WhenProvidedCategoryId_IsNotPresentInSystem()
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 92,
-            };
-
-            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new DbUpdateException());
+            var id = 1;
+            var returnValue = -2;
+            productRequestDTO.CategoryId = 400;
+            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).ReturnsAsync(returnValue);
 
             //Act
-            var productData = await productsController.UpdateProduct(id, productReqDTO);
-            var productUpdateBadRequestResult = productData as BadRequestObjectResult;
-            var ProductUpdateFailResult = productUpdateBadRequestResult?.Value as ProductUpdateFailResponse;
+            var productData = await productsController.UpdateProduct(id, productRequestDTO);
+            var productUpdateNotFoundResult = productData as NotFoundObjectResult;
+            var ProductUpdateFailResult = productUpdateNotFoundResult?.Value as ProductUpdateFailResponse;
 
             //Asserts
             Assert.NotNull(productData);
-            Assert.NotNull(productUpdateBadRequestResult);
-            Assert.IsType<BadRequestObjectResult>(productUpdateBadRequestResult);
+            Assert.NotNull(productUpdateNotFoundResult);
+            Assert.IsType<NotFoundObjectResult>(productUpdateNotFoundResult);
             Assert.IsType<ProductUpdateFailResponse>(ProductUpdateFailResult);
-            Assert.Equal((int)HttpStatusCode.BadRequest, productUpdateBadRequestResult.StatusCode);
+            Assert.Equal((int)HttpStatusCode.NotFound, productUpdateNotFoundResult.StatusCode);
 
             //Additional assertions
             Assert.Equal(id, ProductUpdateFailResult.ProductId);
-            Assert.Equal(productReqDTO.CategoryId, ProductUpdateFailResult.CategoryId);
-            Assert.Equal(ResponseConstantsTest.ProductUpdateFailed, ProductUpdateFailResult.ErrorMessage);
+            Assert.Equal(productRequestDTO.CategoryId, ProductUpdateFailResult.CategoryId);
+            Assert.Equal(ResponseConstantsTest.CategoryIdNotPresent, ProductUpdateFailResult.ErrorMessage);
         }
         [Theory]
         [InlineData(0)]
-        public async Task Test_UpdateProduct_Returns_BadRequestForArgumentException(int id) //non existing category Id
+        [InlineData(-121)]
+        public async Task Test_UpdateProduct_Returns_BadRequest_WhenInvalidIdIsProvided(int id)
         {
             //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 92,
-            };
-            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).
-                Throws(new ArgumentNullException(nameof(id)));
-
             //Act
-            var productData = await productsController.UpdateProduct(id, productReqDTO);
+            var productData = await productsController.UpdateProduct(id, productRequestDTO);
             var productUpdateBadRequestResult = productData as BadRequestObjectResult;
             var productErrorResult = productUpdateBadRequestResult?.Value as ProductUpdateFailResponse;
 
@@ -625,40 +395,13 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(id, productErrorResult.ProductId);
             Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, productErrorResult.ErrorMessage);
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_UpdateProduct_Returns_ServerErrorResponse(int id)
-        {
-            //Arrange
-            var productReqDTO = new ProductRequestDTO
-            {
-                Name = "Nike sneaker",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-            productServiceMock.Setup(p => p.UpdateProduct(id, It.IsAny<Product>())).Throws(new Exception());
-
-            //Act
-            var productData = await productsController.UpdateProduct(id, productReqDTO);
-            var productUpdateObjResult = productData as ObjectResult;
-            var productsErrorResult = productUpdateObjResult?.Value as ProblemDetails;
-
-            //Asserts
-            Assert.NotNull(productData);
-            Assert.NotNull(productUpdateObjResult);
-            Assert.IsType<ObjectResult>(productUpdateObjResult);
-            Assert.IsType<ProblemDetails>(productsErrorResult);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, productUpdateObjResult.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, productsErrorResult.Detail);
-        }
 
         //DeleteProduct tests
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_DeleteProduct_Returns_OKResponse(int id)
+        [Fact]
+        public async Task Test_DeleteProduct_Returns_OKResponse()
         {
             //Arrange
+            var id = 5;
             productServiceMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(id);
 
             //Act
@@ -677,10 +420,10 @@ namespace ECommerceAppTest.EndPointsTest.Products
             Assert.Equal(id, ProductsSuccessResult.ProductId);
             Assert.Equal(ResponseConstantsTest.ProductDeleteSuccess, ProductsSuccessResult.Message);
         }
-        [Theory]
-        [InlineData(78)]
-        public async Task Test_DeleteProduct_Returns_NotFoundResponse(int id)
+        [Fact]
+        public async Task Test_DeleteProduct_Returns_NotFoundResponse()
         {
+            var id = 210;
             var returnValue = -1;
             //Arrange
             productServiceMock.Setup(p => p.DeleteProduct(id)).ReturnsAsync(returnValue);
@@ -703,11 +446,10 @@ namespace ECommerceAppTest.EndPointsTest.Products
         }
         [Theory]
         [InlineData(0)]
-        public async Task Test_DeleteProduct_Returns_BadRequestResponse(int id) 
+        [InlineData(-65)]
+        public async Task Test_DeleteProduct_Returns_BadRequestResponse_WhenInvalidIdProvided(int id) 
         {
             //Arrange
-            productServiceMock.Setup(p => p.DeleteProduct(id)).Throws(new ArgumentNullException(nameof(id)));
-
             //Act
             var productData = await productsController.DeleteProduct(id);
             var productDeleteBadRequestResult = productData as BadRequestObjectResult;
@@ -723,26 +465,6 @@ namespace ECommerceAppTest.EndPointsTest.Products
             //Additional assertions
             Assert.Equal(id, ProductDeleteFailResult.ProductId);
             Assert.Equal(ResponseConstantsTest.NullOrInvalidProductId, ProductDeleteFailResult.ErrorMessage);
-        }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_DeleteProduct_Returns_ServerErrorResponse(int id)
-        {
-            //Arrange
-            productServiceMock.Setup(p => p.DeleteProduct(id)).Throws(new Exception());
-
-            //Act
-            var productData = await productsController.DeleteProduct(id);
-            var productDeleteObjResult = productData as ObjectResult;
-            var productsErrorResult = productDeleteObjResult?.Value as ProblemDetails;
-
-            //Asserts
-            Assert.NotNull(productData);
-            Assert.NotNull(productDeleteObjResult);
-            Assert.IsType<ObjectResult>(productDeleteObjResult);
-            Assert.IsType<ProblemDetails>(productsErrorResult);
-            Assert.Equal((int)HttpStatusCode.InternalServerError, productDeleteObjResult.StatusCode);
-            Assert.Equal(ResponseConstantsTest.ServerError, productsErrorResult.Detail);
         }
     }
    

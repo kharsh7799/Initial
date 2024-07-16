@@ -9,5 +9,8 @@ namespace EcommerceApp.Services.Contracts
         Task<Category?> AddCategory(Category category);
         Task<int> UpdateCategory(int id, Category category);
         Task<int> DeleteCategory(int id);
+        Task<List<Category>> GetAllCategoriesWithProducts();
+        Task<List<Category>> GetCategoryWithProducts(int categoryid);
+
     }
 }

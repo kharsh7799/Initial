@@ -235,7 +235,7 @@ namespace ECommerceAppTest.Repositories
                 var productData = await productRepository.GetProductByCategoryId(categoryId);
 
                 //Asserts
-                Assert.Null(productData);
+                Assert.Empty(productData);
                 foreach (var product in products)
                 {
                     Assert.NotEqual(categoryId, product.CategoryId);
@@ -270,41 +270,6 @@ namespace ECommerceAppTest.Repositories
                 Assert.Equal(product.Name, productData.Name);
                 Assert.Equal(product.Rating, productData.Rating);
                 Assert.Equal(product.Price, productData.Price);
-            }
-        }
-        [Fact]
-        public async Task Test_AddProduct_Returns_NullOrNoProduct()
-        {
-            //Arranage
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "AddProduct_NullProduct")
-               .Options;
-
-            using (var _dbContext = new AppDbContext(options))
-            {
-                var product = new Product
-                {
-                    Id = 1,
-                    Name = "Nike sneaker",
-                    Price = 15000,
-                    Rating = 1,
-                    CategoryId = 5,
-                };
-                var productToAdd = new Product
-                {
-                    Name = "Nike sneaker",
-                    Price = 15000,
-                    Rating = 1,
-                    CategoryId = 5,
-                };
-                await _dbContext.Products.AddAsync(product);
-                await _dbContext.SaveChangesAsync();
-                var productRepository = new ProductRepository(_dbContext);
-                var productData = await productRepository.AddProduct(productToAdd);
-
-                //Asserts
-                Assert.Null(productData);
-                Assert.Equal(product.Name, productToAdd.Name);
             }
         }
         [Fact]
@@ -346,9 +311,8 @@ namespace ECommerceAppTest.Repositories
 
             }
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_UpdateProduct_Returns_ProductId(int id)
+        [Fact]
+        public async Task Test_UpdateProduct_Returns_ProductId()
         {
             //Arranage
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -375,55 +339,14 @@ namespace ECommerceAppTest.Repositories
                 await _dbContext.Products.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
                 var productRepository = new ProductRepository(_dbContext);
-                var productId = await productRepository.UpdateProduct(id, productToUpdate);
+                var productId = await productRepository.UpdateProduct(productToUpdate);
 
                 //Asserts
                 Assert.IsType<int>(productId);
-                Assert.Equal(id, productId);
-                Assert.Equal(product.Price, productToUpdate.Price);
             }
         }
-        [Theory]
-        [InlineData(2)]
-        public async Task Test_UpdateProduct_Returns_NullOrNoProductId(int id)
-        {
-            //Arranage
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "UpdateProduct_NullorNoProduct")
-               .Options;
-
-            using (var _dbContext = new AppDbContext(options))
-            {
-                var product = new Product
-                {
-                    Id = 1,
-                    Name = "Nike sneaker",
-                    Price = 15000,
-                    Rating = 1,
-                    CategoryId = 5,
-                };
-                var productToUpdate = new Product
-                {
-                    Name = "Nike sneaker",
-                    Price = 20000,
-                    Rating = 3,
-                    CategoryId = 5,
-                };
-                await _dbContext.Products.AddAsync(product);
-                await _dbContext.SaveChangesAsync();
-                var productRepository = new ProductRepository(_dbContext);
-                var productId = await productRepository.UpdateProduct(id, productToUpdate);
-
-                //Asserts
-                Assert.IsType<int>(productId);
-                Assert.Equal(-1, productId);
-                Assert.NotEqual(product.Price, productToUpdate.Price);
-
-            }
-        }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_DeleteProduct_Returns_ProductId(int id)
+        [Fact]
+        public async Task Test_DeleteProduct_Returns_ProductId()
         {
             //Arranage
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -443,40 +366,11 @@ namespace ECommerceAppTest.Repositories
                 await _dbContext.Products.AddAsync(product);
                 await _dbContext.SaveChangesAsync();
                 var productRepository = new ProductRepository(_dbContext);
-                var productId = await productRepository.DeleteProduct(id);
+                var productId = await productRepository.DeleteProduct(product);
 
                 //Asserts
                 Assert.IsType<int>(productId);
-                Assert.Equal(id, productId);
-            }
-        }
-        [Theory]
-        [InlineData(2)]
-        public async Task Test_DeleteProduct_Returns_NullOrNoProductId(int id)
-        {
-            //Arranage
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "UpdateProduct_NullorNoProduct")
-               .Options;
-
-            using (var _dbContext = new AppDbContext(options))
-            {
-                var product = new Product
-                {
-                    Id = 4,
-                    Name = "Nike sneaker",
-                    Price = 15000,
-                    Rating = 1,
-                    CategoryId = 5,
-                };
-                await _dbContext.Products.AddAsync(product);
-                await _dbContext.SaveChangesAsync();
-                var productRepository = new ProductRepository(_dbContext);
-                var productId = await productRepository.DeleteProduct(id);
-
-                //Asserts
-                Assert.IsType<int>(productId);
-                Assert.Equal(-1, productId);
+                Assert.Equal(product.Id, productId);
             }
         }
     }

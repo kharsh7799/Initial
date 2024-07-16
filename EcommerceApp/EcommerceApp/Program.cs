@@ -10,6 +10,7 @@ using System.Reflection;
 using EcommerceApp.Services.Contracts;
 using EcommerceApp.Services.Implementations;
 using System.Diagnostics.CodeAnalysis;
+using EcommerceApp.Middleware;
 /// <summary>
 /// Program class
 /// </summary>
@@ -53,12 +54,9 @@ public class Program {
 
         builder.Services.AddScoped<IProductRepository, ProductRepository>();
         builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-        builder.Services.AddScoped<ICategoryWithProductsRepo, CategoryWithProductsRepo>();
-
 
         builder.Services.AddScoped<IProductService, ProductService>();
         builder.Services.AddScoped<ICategoryService, CategoryService>();
-        builder.Services.AddScoped<ICategoryWithProductsService, CategoryWithProducts>();
 
         builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
@@ -69,6 +67,8 @@ public class Program {
         });
 
         var app = builder.Build();
+
+        app.UseMiddleware<ExceptionMiddlware>();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

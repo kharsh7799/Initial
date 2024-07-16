@@ -24,6 +24,10 @@
     {
         public string? ErrorMessage { get; set; }
     }
+    public class ProductIdInvalidResponse : ProductErrorResponse
+    {
+        public int ProductId { get; set; }
+    }
     public class ProductAlreadyPresentResponse: ProductErrorResponse
     {
         public string? ProductName { get; set; }

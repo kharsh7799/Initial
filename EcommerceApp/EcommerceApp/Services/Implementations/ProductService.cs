@@ -1,5 +1,6 @@
 ﻿using EcommerceApp.Entities.DomainModels;
 using EcommerceApp.Repositories.Contracts;
+using EcommerceApp.Repositories.Implementation;
 using EcommerceApp.Services.Contracts;
 using System.Linq.Expressions;
 
@@ -8,99 +9,70 @@ namespace EcommerceApp.Services.Implementations
     public class ProductService : IProductService
     {
         private readonly IProductRepository productRepository;
-        private readonly ILogger<ProductService> logger;
+        private readonly ICategoryRepository categoryRepository;
 
-        public ProductService(IProductRepository productRepository, ILogger<ProductService> logger)
+        public ProductService(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             this.productRepository = productRepository;
-            this.logger = logger;
+            this.categoryRepository = categoryRepository;
         }
         public async Task<Product?> AddProduct(Product product)
         {
-            try
+            var products = await productRepository.GetAllProducts();
+            var isPresent = products.Any(x => x.Name?.ToUpper() == product.Name?.ToUpper());
+            if(isPresent)
             {
-                var productAdd = await productRepository.AddProduct(product);
-                logger.LogInformation($"Product {product.Name} added successfully");
-                return productAdd;
+                return null;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await productRepository.AddProduct(product);
         }
         public async Task<int> DeleteProduct(int id)
         {
-            try
+            var productData = await productRepository.GetProductById(id);
+            if (productData == null)
             {
-                if (id > 0) 
-                { 
-                    var deletedproduct = await productRepository.DeleteProduct(id);
-                    return deletedproduct;
-                }
-                logger.LogInformation($"Invalid product id entered.");
-                throw new ArgumentNullException(nameof(id));
+                return -1;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+           return await productRepository.DeleteProduct(productData);
         }
         public async Task<List<Product>> GetAllProducts(string? filterByNameValue = null)
         {
             return await productRepository.GetAllProducts(filterByNameValue);
         }
-        public async Task<List<Product>?> GetProductByCategoryId(int categoryId)
+        public async Task<List<Product>> GetProductByCategoryId(int categoryId)
         {
-            try
-            {
-                if (categoryId > 0)
-                {
-                    var productList = await productRepository.GetProductByCategoryId(categoryId);
-                    logger.LogInformation($"Product with categoryId = {categoryId} fetched successfully");
-                    return productList;
-                }
-                logger.LogInformation($"Invalid category id entered.");
-                throw new ArgumentNullException(nameof(categoryId));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return await productRepository.GetProductByCategoryId(categoryId);
         }
         public async Task<Product?> GetProductById(int id)
-        {      
-            try
+        {
+            return await productRepository.GetProductById(id);
+        }
+        public async Task<bool> IsCategoryPresent(int categoryId)
+        {
+            var category = await categoryRepository.GetCategoryById(categoryId);
+            if (category == null)
             {
-                if(id > 0)
-                {
-                    var product = await productRepository.GetProductById(id);
-                    logger.LogInformation($"Product data with product id = {id} fetched successfully");
-                    return product;
-                }
-                logger.LogInformation($"Invalid product id entered.");
-                throw new ArgumentNullException(nameof(id));
+                return false;
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            return category.Id == categoryId;
         }
         public async Task<int> UpdateProduct(int id, Product product)
         {
-            try
+            var productData = await productRepository.GetProductById(id);
+            if (productData == null)
             {
-                if(id>0)
-                {
-                    var updatedProduct = await productRepository.UpdateProduct(id, product);
-                    return updatedProduct;
-                }
-                logger.LogInformation($"Invalid product id entered.");
-                throw new ArgumentNullException(nameof(id));
+                return -1;
             }
-            catch (Exception)
+            var isPresent = await IsCategoryPresent(product.CategoryId);
+            if (!isPresent)
             {
-                throw;
-            }   
+                return -2;
+            }
+            productData.Name = product.Name;
+            productData.Price = product.Price;
+            productData.Rating = product.Rating;
+            productData.CategoryId = product.CategoryId;
+            return await productRepository.UpdateProduct(productData);
         }
     }
 }

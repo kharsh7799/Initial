@@ -6,9 +6,10 @@ namespace EcommerceApp.Services.Contracts
     { 
         Task<List<Product>> GetAllProducts(string? filterByNameValue = null);
         Task<Product?> GetProductById(int id);
-        Task<List<Product>?> GetProductByCategoryId(int categoryId);
+        Task<List<Product>> GetProductByCategoryId(int categoryId);
         Task<Product?> AddProduct(Product product);
-        Task<int> UpdateProduct(int id, Product product);
+        Task<int> UpdateProduct(int id,Product product);
         Task<int> DeleteProduct(int id);
+        Task<bool> IsCategoryPresent(int categoryId);
     }
 }

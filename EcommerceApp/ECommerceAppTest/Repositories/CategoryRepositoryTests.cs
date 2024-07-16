@@ -155,34 +155,6 @@ namespace ECommerceAppTest.Repositories
             }
         }
         [Fact]
-        public async Task Test_AddCategory_Returns_NullOrNoCategory()
-        {
-            //Arranage
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "AddCategory_NullCategory")
-               .Options;
-
-            using (var _dbContext = new AppDbContext(options))
-            {
-                var category = new Category
-                {
-                    Name = "TV",
-                };
-                var categoryToAdd = new Category
-                {
-                    Name = "TV",
-                };
-                await _dbContext.Categories.AddAsync(category);
-                await _dbContext.SaveChangesAsync();
-                var categoryRepository = new CategoryRepository(_dbContext);
-                var categoryData = await categoryRepository.AddCategory(categoryToAdd);
-
-                //Asserts
-                Assert.Null(categoryData);
-                Assert.Equal(category.Name, categoryToAdd.Name);
-            }
-        }
-        [Fact]
         public async Task Test_AddCategory_Returns_Exception()
         {
             //Arranage
@@ -214,9 +186,8 @@ namespace ECommerceAppTest.Repositories
 
             }
         }
-        [Theory]
-        [InlineData(5)]
-        public async Task Test_UpdateCategory_Returns_CategoryId(int id)
+        [Fact]
+        public async Task Test_UpdateCategory_Returns_CategoryId()
         {
             //Arranage
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -239,50 +210,14 @@ namespace ECommerceAppTest.Repositories
                 await _dbContext.Categories.AddAsync(category);
                 await _dbContext.SaveChangesAsync();
                 var categoryRepository = new CategoryRepository(_dbContext);
-                var categoryId = await categoryRepository.UpdateCategory(id, categoryToUpdate);
+                var categoryId = await categoryRepository.UpdateCategory(categoryToUpdate);
 
                 //Asserts
                 Assert.IsType<int>(categoryId);
-                Assert.Equal(id, categoryId);
-                Assert.Equal(category.Name, categoryToUpdate.Name);
             }
         }
-        [Theory]
-        [InlineData(200)]
-        public async Task Test_UpdateCategory_Returns_NullOrNoCategoryId(int id)
-        {
-            //Arranage
-            var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "UpdateCategory_NullorNoCategory")
-               .Options;
-
-            using (var _dbContext = new AppDbContext(options))
-            {
-                var category = new Category
-                {
-                    Id = 5,
-                    Name = "TV",
-                };
-                var categoryToUpdate = new Category
-                {
-                    Name = "Mobile",
-
-                };
-                await _dbContext.Categories.AddAsync(category);
-                await _dbContext.SaveChangesAsync();
-                var categoryRepository = new CategoryRepository(_dbContext);
-                var categoryId = await categoryRepository.UpdateCategory(id, categoryToUpdate);
-
-                //Asserts
-                Assert.IsType<int>(categoryId);
-                Assert.Equal(-1, categoryId);
-                Assert.NotEqual(category.Name, categoryToUpdate.Name);
-
-            }
-        }
-        [Theory]
-        [InlineData(5)]
-        public async Task Test_DeleteCategory_Returns_CategoryId(int id)
+        [Fact]
+        public async Task Test_DeleteCategory_Returns_CategoryId()
         {
             //Arranage
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -299,38 +234,209 @@ namespace ECommerceAppTest.Repositories
                 await _dbContext.Categories.AddAsync(category);
                 await _dbContext.SaveChangesAsync();
                 var categoryRepository = new CategoryRepository(_dbContext);
-                var categoryId = await categoryRepository.DeleteCategory(id);
+                var categoryId = await categoryRepository.DeleteCategory(category);
 
                 //Asserts
                 Assert.IsType<int>(categoryId);
-                Assert.Equal(id, categoryId);
+                Assert.Equal(category.Id, categoryId);
             }
         }
-        [Theory]
-        [InlineData(200)]
-        public async Task Test_DeleteCategory_Returns_NullOrNoCategoryId(int id)
+        [Fact]
+        public async Task Test_GetCategoriesWithProductDetails_Returns_CategoryWithProductList()
         {
             //Arranage
             var options = new DbContextOptionsBuilder<AppDbContext>()
-               .UseInMemoryDatabase(databaseName: "DeleteCategory_NullorNoCategory")
+               .UseInMemoryDatabase(databaseName: "GetCategoriesWithProductDetails_CategoryWithProductList")
                .Options;
 
             using (var _dbContext = new AppDbContext(options))
             {
-                var category = new Category
+                var categories = new List<Category>()
                 {
-                    Id = 5,
-                    Name = "TV",
+                  new Category
+                   {
+                     Id = 1,
+                     Name = "TV",
+                     Products = new List<Product>()
+                     {
+                       new Product
+                       {
+                         Id = 1,
+                         Name = "Nike sneaker",
+                         Price=15000,
+                         Rating=1,
+                         CategoryId=1,
+                       }
+                     }
+                   },
+                  new Category
+                   {
+                     Id = 2,
+                     Name = "Mobile",
+                     Products = new List<Product>()
+                       {
+                          new Product
+                          {
+                            Id = 2,
+                            Name = "Adidas sports",
+                            Price=2000,
+                            Rating=2,
+                            CategoryId=2,
+                          }
+                       }
+                   }
                 };
-                await _dbContext.Categories.AddAsync(category);
+                await _dbContext.Categories.AddRangeAsync(categories);
                 await _dbContext.SaveChangesAsync();
-                var categoryRepository = new CategoryRepository(_dbContext);
-                var categoryId = await categoryRepository.DeleteCategory(id);
+                var categoryWithProductsRepo = new CategoryRepository(_dbContext);
+                var categoryWithProductsData = await categoryWithProductsRepo.GetAllCategoriesWithProducts();
 
                 //Asserts
-                Assert.IsType<int>(categoryId);
-                Assert.Equal(-1, categoryId);
+                Assert.NotNull(categoryWithProductsData);
+                Assert.IsType<List<Category>>(categoryWithProductsData);
+                Assert.Equal(categories[0].Id, categoryWithProductsData[0].Id);
+                Assert.Equal(categories[0].Name, categoryWithProductsData[0].Name);
+                Assert.Equal(categories.Count, categoryWithProductsData.Count);
             }
         }
+        [Fact]
+        public async Task Test_GetCategoriesWithProductDetails_Returns_EmptyResult()
+        {
+            //Arranage
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+               .UseInMemoryDatabase(databaseName: "GetCategoriesWithProductDetails_EmptyProductList")
+               .Options;
+
+            using (var _dbContext = new AppDbContext(options))
+            {
+                var categories = new List<Category>();
+                await _dbContext.Categories.AddRangeAsync(categories);
+                await _dbContext.SaveChangesAsync();
+                var categoryWithProductsRepo = new CategoryRepository(_dbContext);
+                var categoryWithProductsData = await categoryWithProductsRepo.GetAllCategoriesWithProducts();
+
+                //Asserts
+                Assert.NotNull(categoryWithProductsData);
+                Assert.IsType<List<Category>>(categoryWithProductsData);
+                Assert.Empty(categoryWithProductsData);
+            }
+        }
+        [Fact]
+        public async Task Test_GetCategoryWithProductDetails_Returns_CategoryWithProduct()
+        {
+            //Arranage
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+               .UseInMemoryDatabase(databaseName: "GetCategoryWithProductDetails_CategoryWithProduct")
+               .Options;
+
+            using (var _dbContext = new AppDbContext(options))
+            {
+                var id = 1;
+                var categories = new List<Category>()
+                {
+                  new Category
+                   {
+                     Id = 1,
+                     Name = "TV",
+                     Products = new List<Product>()
+                     {
+                       new Product
+                       {
+                         Id = 1,
+                         Name = "Nike sneaker",
+                         Price=15000,
+                         Rating=1,
+                         CategoryId=1,
+                       }
+                     }
+                   },
+                  new Category
+                   {
+                     Id = 2,
+                     Name = "Mobile",
+                     Products = new List<Product>()
+                       {
+                          new Product
+                          {
+                            Id = 2,
+                            Name = "Adidas sports",
+                            Price=2000,
+                            Rating=2,
+                            CategoryId=2,
+                          }
+                       }
+                   }
+                };
+
+                await _dbContext.Categories.AddRangeAsync(categories);
+                await _dbContext.SaveChangesAsync();
+                var categoryWithProductsRepo = new CategoryRepository(_dbContext);
+                var categoryWithProductsData = await categoryWithProductsRepo.GetCategoryWithProducts(id);
+
+                //Asserts
+                Assert.NotNull(categoryWithProductsData);
+                Assert.IsType<List<Category>>(categoryWithProductsData);
+                Assert.Equal(categories[0].Id, categoryWithProductsData[0].Id);
+                Assert.Equal(categories[0].Name, categoryWithProductsData[0].Name);
+                Assert.Single(categoryWithProductsData);
+            }
+        }
+        [Fact]
+        public async Task Test_GetCategoryWithProductDetails_Returns_EmptyResult()
+        {
+            //Arranage
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+               .UseInMemoryDatabase(databaseName: "GetCategoryWithProductDetails_EmptyResult")
+               .Options;
+
+            using (var _dbContext = new AppDbContext(options))
+            {
+                var id = 400;
+                var categories = new List<Category>()
+                {
+                  new Category
+                   {
+                     Id = 1,
+                     Name = "TV",
+                     Products = new List<Product>()
+                     {
+                       new Product
+                       {
+                         Id = 1,
+                         Name = "Nike sneaker",
+                         Price=15000,
+                         Rating=1,
+                         CategoryId=1,
+                       }
+                     }
+                   },
+                  new Category
+                   {
+                     Id = 2,
+                     Name = "Mobile",
+                     Products = new List<Product>()
+                       {
+                          new Product
+                          {
+                            Id = 2,
+                            Name = "Adidas sports",
+                            Price=2000,
+                            Rating=2,
+                            CategoryId=2,
+                          }
+                       }
+                   }
+                };
+                await _dbContext.Categories.AddRangeAsync(categories);
+                await _dbContext.SaveChangesAsync();
+                var categoryWithProductsRepo = new CategoryRepository(_dbContext);
+                var categoryWithProductsData = await categoryWithProductsRepo.GetCategoryWithProducts(id);
+                //Asserts
+                Assert.NotNull(categoryWithProductsData);
+                Assert.IsType<List<Category>>(categoryWithProductsData);
+                Assert.Empty(categoryWithProductsData);
+            }
+        }
+
     }
 }

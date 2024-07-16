@@ -13,110 +13,41 @@ namespace EcommerceApp.Repositories.Implementation
         {
             this.dbContext = dbContext;
         }
-        public async Task<Product?> AddProduct(Product product)
+        public async Task<Product> AddProduct(Product product)
         {
-            try
-            {
-                //verifying record is already present or not
-                var isAdd = await dbContext.Products.AnyAsync(x => x.Name == product.Name);
-
-                if (!isAdd)
-                {
-                    await dbContext.Products.AddAsync(product);
-                    var productIsadded = await dbContext.SaveChangesAsync();
-
-                    return product;
-                }
-                return null;
-            }
-            catch(Exception)
-            {
-                throw;
-            }
+            await dbContext.Products.AddAsync(product);
+            await dbContext.SaveChangesAsync();
+            return product;
         }
-        public async Task<int> DeleteProduct(int id)
+        public async Task<int> DeleteProduct(Product product)
         {
-            try
-            {
-                var product = await dbContext.Products.FindAsync(id);
-                if (product != null)
-                {
-                    dbContext.Remove(product);
-                    var isSuccess = await dbContext.SaveChangesAsync();
-                    return id;
-                }
-                return -1;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+             dbContext.Products.Remove(product);
+             await dbContext.SaveChangesAsync();
+             return product.Id;
+         
         }
-
         public async Task<List<Product>> GetAllProducts(string? filterByNameValue = null)
         {
             var products = dbContext.Products.AsQueryable();
             if (!string.IsNullOrEmpty(filterByNameValue))
             {
-                products = products.Where(x => x.Name.Contains(filterByNameValue));
+             return await products.Where(x => x.Name.Contains(filterByNameValue)).ToListAsync();
             }
             return await products.ToListAsync();
         }
-
         public async Task<Product?> GetProductById(int id)
         {
-            try
-            {
-                var product = await dbContext.Products.FindAsync(id);
-                if (product != null)
-                {
-                    return product;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        
+           return await dbContext.Products.FindAsync(id);
         }
-        public async Task<List<Product>?> GetProductByCategoryId(int categoryId)
+        public async Task<List<Product>> GetProductByCategoryId(int categoryId)
         {
-                var productsByCategoryId = dbContext.Products.Where(x => x.CategoryId == categoryId);
-                if (productsByCategoryId.Any())
-                {
-                    return await productsByCategoryId.ToListAsync();
-                }
-                else
-                {
-                    return null;
-                }
+           return await dbContext.Products.Where(x => x.CategoryId == categoryId).ToListAsync();
         }
-
-        public async Task<int> UpdateProduct(int id, Product product)
+        public async Task<int> UpdateProduct(Product product)
         {
-            try
-            {
-                var productData = await dbContext.Products.FindAsync(id);
-                if (productData != null)
-                {
-                    productData.Name = product.Name;
-                    productData.Price = product.Price;
-                    productData.Rating = product.Rating;
-                    productData.CategoryId = product.CategoryId;
-                    var isSuccess = await dbContext.SaveChangesAsync();
-                    return id;
-                }
-                return -1;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-           
+            dbContext.Products.Update(product);
+            await dbContext.SaveChangesAsync();
+            return product.Id;
         }
     }
 }

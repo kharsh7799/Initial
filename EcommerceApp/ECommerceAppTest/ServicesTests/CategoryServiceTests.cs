@@ -2,6 +2,7 @@
 using EcommerceApp.Repositories.Contracts;
 using EcommerceApp.Services.Contracts;
 using EcommerceApp.Services.Implementations;
+using ECommerceAppTest.DataSetUp;
 using Microsoft.CodeAnalysis.Elfie.Model.Structures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -18,30 +19,29 @@ namespace ECommerceAppTest.ServicesTests
     {
         private readonly Mock<ICategoryRepository> categorytRepositoryMock;
         private readonly ICategoryService categoryService;
-        private readonly Mock<ILogger<CategoryService>> logger;
+        private readonly InitialCategoryDataSetUp categoryDataSetUp;
+        private readonly List<Category> categories;
+        private readonly List<Category> categoriesWithProducts;
         public CategoryServiceTests()
         {
             categorytRepositoryMock = new Mock<ICategoryRepository>();
-            logger = new Mock<ILogger<CategoryService>>();
-            categoryService = new CategoryService(categorytRepositoryMock.Object, logger.Object);
+            categoryService = new CategoryService(categorytRepositoryMock.Object);
+            categoryDataSetUp = new InitialCategoryDataSetUp();
+            categories = categoryDataSetUp.CategoryList;
+            categoriesWithProducts = categoryDataSetUp.CategoriesWithProductsList;
+        }
+        private Category? GetCategoryById(int id)
+        {
+            return categories?.Find(x => x.Id == id);
+        }
+        private List<Category> GetCategoryWithProductsById(int id)
+        {
+            return categoriesWithProducts.Where(x => x.Id == id).ToList();
         }
         [Fact]
         public async Task Test_GetAllCategories_Returns_ProductList()
         {
             //Arrange
-            var categories = new List<Category>()
-            {
-              new Category
-              {
-                Id = 1,
-                Name = "Food",
-              },
-              new Category
-              {
-                Id = 2,
-                Name = "Mobile",
-              },
-            };
             categorytRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
             //Act
             var categoriesList = await categoryService.GetAllCategories();
@@ -49,51 +49,47 @@ namespace ECommerceAppTest.ServicesTests
             Assert.NotNull(categoriesList);
             Assert.IsType<List<Category>>(categoriesList);
             Assert.Equal(categories[0].Name, categoriesList[0].Name);
-            Assert.Equal(categories[1].Name, categoriesList[1].Name);
             Assert.Equal(categories.Count, categoriesList.Count);
-
         }
         [Fact]
         public async Task Test_GetAllCategories_Returns_EmptyProductList()
         {
             //Arrange
-            var categories = new List<Category>();
-            categorytRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
+            var categorieList = new List<Category>();
+            categorytRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categorieList);
             //Act
             var categoriesData = await categoryService.GetAllCategories();
             //Assert
             Assert.IsType<List<Category>>(categoriesData);
-            Assert.Equal(categories.Count, categoriesData.Count);
+            Assert.Equal(categorieList.Count, categoriesData.Count);
 
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_GetCategoryById_Returns_Product(int id)
+        [Fact]
+        public async Task Test_GetCategoryById_Returns_CategoryData()
         {
             //Arrange
-            var category = new Category
-            {
-                Id = 4,
-                Name = "Mobile",
-            };
+            var id = 4;
+            var category = GetCategoryById(id);
             categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(category);
             //Act
             var categoryData = await categoryService.GetCategoryById(id);
             //Assert
             Assert.NotNull(categoryData);
             Assert.IsType<Category>(categoryData);
-            Assert.Equal(category.Id, categoryData.Id);
-            Assert.Equal(category.Name, categoryData.Name);
+            Assert.Equal(category?.Id, categoryData.Id);
+            Assert.Equal(category?.Name, categoryData.Name);
         }
-        [Theory]
-        [InlineData(-9)]
-        public async Task Test_GetCategoryById_Returns_ArgumentException(int id)
+        [Fact]
+        public async Task Test_GetCategoryById_Returns_NullOrNoData()
         {
+            //Arrange
+            var id = 256;
+            var category = GetCategoryById(id);
+            categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(category);
+            //Act
+            var categoryData = await categoryService.GetCategoryById(id);
             //Assert
-            var exception = await Assert.ThrowsAsync<ArgumentNullException>(() => categoryService.GetCategoryById(id));
-            Assert.NotNull(exception);
-            Assert.IsType<ArgumentNullException>(exception);
-            Assert.Equal(nameof(id), exception.ParamName);
+            Assert.Null(categoryData);
         }
         [Fact]
         public async Task Test_AddCategory_Returns_CreatedProduct()
@@ -101,8 +97,9 @@ namespace ECommerceAppTest.ServicesTests
             //Arrange
             var category = new Category
             {
-                Name = "Mobile",
+                Name = "Fashion",
             };
+            categorytRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
             categorytRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).ReturnsAsync(category);
             //Act
             var categoryData = await categoryService.AddCategory(category);
@@ -113,70 +110,132 @@ namespace ECommerceAppTest.ServicesTests
 
         }
         [Fact]
-        public async Task Test_AddCategory_Returns_Exception()
+        public async Task Test_AddCategory_Returns_NullOrNoCategory()
         {
             //Arrange
             var category = new Category
             {
                 Name = "Mobile",
             };
-            categorytRepositoryMock.Setup(p => p.AddCategory(It.IsAny<Category>())).Throws(new DbUpdateException());
+            categorytRepositoryMock.Setup(p => p.GetAllCategories()).ReturnsAsync(categories);
             //Act
-            var exception = await Assert.ThrowsAsync<DbUpdateException>(() => categoryService.AddCategory(category));
-            Assert.NotNull(exception);
-            Assert.IsType<DbUpdateException>(exception);
+            var categoryData = await categoryService.AddCategory(category);
+            Assert.Null(categoryData);
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_UpdateCategory_Returns_UpdatedCategoryId(int id)
+        [Fact]
+        public async Task Test_UpdateCategory_Returns_UpdatedCategoryId()
         {
             //Arrange
-            var category = new Category
+            var categoryToUpdate = new Category
             {
                 Name = "Fashion",
             };
-            categorytRepositoryMock.Setup(p => p.UpdateCategory(id, It.IsAny<Category>())).ReturnsAsync(id);
+            var id = 4;
+            var categoryDetails = GetCategoryById(id);
+            categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(categoryDetails);
+            categorytRepositoryMock.Setup(p => p.UpdateCategory(It.IsAny<Category>())).ReturnsAsync(id);
             //Act
-            var categoryData = await categoryService.UpdateCategory(id, category);
+            var categoryData = await categoryService.UpdateCategory(id, categoryToUpdate);
             //Asserts
             Assert.IsType<int>(categoryData);
             Assert.Equal(id, categoryData);
         }
-        [Theory]
-        [InlineData(0)]
-        public async Task Test_UpdateCategory_Returns_ArgumentException(int id)
+        [Fact]
+        public async Task Test_UpdateCategory_Returns_WhenIdIsNotFound()
         {
-            var category = new Category
+            var categoryToUpdate = new Category
             {
                 Name = "Fashion",
             };
+            var id = 90;
+            var categoryDetails = GetCategoryById(id);
+            categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(categoryDetails);
             //Act
-            var exception = await Assert.ThrowsAsync<ArgumentNullException>(() => categoryService.UpdateCategory(id, category));
-            Assert.NotNull(exception);
-            Assert.IsType<ArgumentNullException>(exception);
-            Assert.Equal(nameof(id), exception.ParamName);
+            var categoryData = await categoryService.UpdateCategory(id, categoryToUpdate);
+            Assert.Equal(-1,categoryData);
         }
-        [Theory]
-        [InlineData(4)]
-        public async Task Test_DeleteCategory_Returns_DeletedCategoryId(int id)
+        [Fact]
+        public async Task Test_DeleteCategory_Returns_DeletedCategoryId()
         {
             //Arrange
-            categorytRepositoryMock.Setup(p => p.DeleteCategory(id)).ReturnsAsync(id);
+            var id = 4;
+            var categoryDetails = GetCategoryById(id);
+            categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(categoryDetails);
+            categorytRepositoryMock.Setup(p => p.DeleteCategory(It.IsAny<Category>())).ReturnsAsync(id);
             //Act
             var deletedcategoryId = await categoryService.DeleteCategory(id);
             //Asserts
             Assert.IsType<int>(deletedcategoryId);
             Assert.Equal(id, deletedcategoryId);
         }
-        [Theory]
-        [InlineData(0)]
-        public async Task Test_DeleteCategory_Returns_ArgumentException(int id)
+        [Fact]
+        public async Task Test_DeleteCategory_Returns_ArgumentException()
         {
+            //Arrnage
+            var id = 509;
+            var categoryDetails = GetCategoryById(id);
+            categorytRepositoryMock.Setup(p => p.GetCategoryById(id)).ReturnsAsync(categoryDetails);
             //Act
-            var exception = await Assert.ThrowsAsync<ArgumentNullException>(() => categoryService.DeleteCategory(id));
-            Assert.NotNull(exception);
-            Assert.IsType<ArgumentNullException>(exception);
-            Assert.Equal(nameof(id), exception.ParamName);
+            var deletedcategoryId = await categoryService.DeleteCategory(id);
+            //Assert
+            Assert.IsType<int>(deletedcategoryId);
+            Assert.Equal(-1, deletedcategoryId);
         }
+        [Fact]
+        public async Task Test_GetAllCategoriesWithProducts_Returns_ListCategoriesWithProducts()
+        {
+            //Arrange
+            categorytRepositoryMock.Setup(p => p.GetAllCategoriesWithProducts()).ReturnsAsync(categoriesWithProducts);
+            //Act
+            var categoriesList = await categoryService.GetAllCategoriesWithProducts();
+            //Assert
+            Assert.NotNull(categoriesList);
+            Assert.IsType<List<Category>>(categoriesList);
+            Assert.Equal(categoriesWithProducts[0].Name, categoriesList[0].Name);
+            Assert.Equal(categoriesWithProducts.Count, categoriesList.Count);
+        }
+        [Fact]
+        public async Task Test_GetAllCategoriesWithProducts_Returns_EmptyResult()
+        {
+            //Arrange
+            var categoryListData = new List<Category>();
+            categorytRepositoryMock.Setup(p => p.GetAllCategoriesWithProducts()).ReturnsAsync(categoryListData);
+            //Act
+            var categoriesData = await categoryService.GetAllCategoriesWithProducts();
+            //Assert
+            Assert.IsType<List<Category>>(categoriesData);
+            Assert.Equal(categoryListData.Count, categoriesData.Count);
+
+        }
+        [Fact]
+        public async Task Test_GetCategoryWithProducts_Returns_ListCategoriesWithProducts()
+        {
+            //Arrange
+            var categoryid = 1;
+            var categoryWithProduct = GetCategoryWithProductsById(categoryid);
+            categorytRepositoryMock.Setup(p => p.GetCategoryWithProducts(categoryid)).ReturnsAsync(categoryWithProduct);
+            //Act
+            var categoriesList = await categoryService.GetCategoryWithProducts(categoryid);
+            //Assert
+            Assert.NotNull(categoriesList);
+            Assert.IsType<List<Category>>(categoriesList);
+            Assert.Equal(categoryWithProduct[0].Name, categoriesList[0].Name);
+            Assert.Equal(categoryWithProduct.Count, categoriesList.Count);
+        }
+        [Fact]
+        public async Task Test_GetCategoryWithProducts_Returns_EmptyResult()
+        {
+            //Arrange
+            var categoryid = 765;
+            var categoryWithProduct = GetCategoryWithProductsById(categoryid);
+            categorytRepositoryMock.Setup(p => p.GetCategoryWithProducts(categoryid)).ReturnsAsync(categoryWithProduct);
+            //Act
+            var categoriesData = await categoryService.GetCategoryWithProducts(categoryid);
+            //Assert
+            Assert.IsType<List<Category>>(categoriesData);
+            Assert.Equal(categoryWithProduct.Count, categoriesData.Count);
+
+        }
+
     }
 }
