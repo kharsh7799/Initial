@@ -6,10 +6,8 @@ using System.Diagnostics.CodeAnalysis;
 namespace EcommerceApp.Migrations
 {
     [ExcludeFromCodeCoverage]
-    /// <inheritdoc />
     public partial class Initial : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(

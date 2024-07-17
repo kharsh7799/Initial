@@ -1,43 +1,34 @@
-﻿using Microsoft.AspNetCore.Hosting.Server;
-using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.TestHost;
-using EcommerceApp.Middleware;
+﻿using EcommerceApp.Middleware;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.TestHost;
 using Newtonsoft.Json;
 using System.Net;
-using Microsoft.AspNetCore.Http;
 
 namespace ECommerceAppTest.CustomMiddleware
 {
     public class ExceptionMidllewareTest
     {
-        private readonly TestServer _server;
-        private readonly HttpClient _client;
-        public ExceptionMidllewareTest()
-        {
-            _server = new TestServer(new WebHostBuilder()
-        .ConfigureServices(services =>
-        {
-        })
-        .Configure(app =>
-        {
-            app.UseMiddleware<ExceptionMiddlware>();
-            app.Run(async context =>
-            {
-                 throw new InvalidOperationException("Simulated error");
-            });
-        }));
-
-            _client = _server.CreateClient();
-        }
+        private TestServer? _server;
+        private HttpClient? _client;
         [Fact]
         public async Task Middleware_Should_Return_InternalServerError_Response()
         {
+            _server = new TestServer(new WebHostBuilder()
+            .ConfigureServices(services =>
+            {
+            })
+            .Configure(app =>
+            {
+                app.UseMiddleware<ExceptionMiddlware>();
+                app.Run(context => 
+                {
+                    throw new InvalidOperationException("Simulated error");
+                });
+            }));
+
+            _client = _server.CreateClient();
             // Arrange - Client sends request
             var request = new HttpRequestMessage(HttpMethod.Get, "/");
             request.Headers.Add("Accept", "application/json");
@@ -59,6 +50,38 @@ namespace ECommerceAppTest.CustomMiddleware
             Assert.NotNull(errorResponse);
             Assert.Equal(StatusCodes.Status500InternalServerError, errorResponse.Status);
             Assert.Equal("An unexpected fault happened. Please try again later.", errorResponse.ErrorMessage);
+
+        }
+        [Fact]
+        public async Task Middleware_Should_Return_NoError_Response()
+        {
+            _server = new TestServer(new WebHostBuilder()
+            .ConfigureServices(services =>
+            {
+            })
+            .Configure(app =>
+            {
+                app.UseMiddleware<ExceptionMiddlware>();
+                app.Run(async context =>
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.OK;
+                    await context.Response.WriteAsync("No error occurred");
+                });
+            }));
+
+            _client = _server.CreateClient();
+            // Arrange - Client sends request
+            var request = new HttpRequestMessage(HttpMethod.Get, "/");
+            request.Headers.Add("Accept", "application/json");
+
+            // Act - Client receives response
+            var response = await _client.SendAsync(request);
+
+            // Assert - Validate response
+            var content = await response.Content.ReadAsStringAsync();
+            Assert.NotNull(content);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal("No error occurred", content);
 
         }
     }

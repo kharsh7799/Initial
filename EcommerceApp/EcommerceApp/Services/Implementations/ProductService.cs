@@ -37,7 +37,11 @@ namespace EcommerceApp.Services.Implementations
         }
         public async Task<List<Product>> GetAllProducts(string? filterByNameValue = null)
         {
-            return await productRepository.GetAllProducts(filterByNameValue);
+            if(filterByNameValue == null)
+            {
+                return await productRepository.GetAllProducts();
+            }
+            return await productRepository.GetProductsByName(filterByNameValue);
         }
         public async Task<List<Product>> GetProductByCategoryId(int categoryId)
         {

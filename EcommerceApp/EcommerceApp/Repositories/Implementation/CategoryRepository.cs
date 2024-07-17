@@ -34,7 +34,6 @@ namespace EcommerceApp.Repositories.Implementation
         }
         public async Task<int> UpdateCategory(Category category)
         {
-            dbContext.Categories.Update(category);
             await dbContext.SaveChangesAsync();
             return category.Id;
         }

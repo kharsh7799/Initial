@@ -11,13 +11,13 @@ namespace EcommerceApp.Entities.DTOs.Product
         /// <summary>
         /// Product Name
         /// </summary>
-        [Required(ErrorMessage = "Name filed is required")]
+        [Required(ErrorMessage = "Name field is required")]
         public string? Name { get; set; }
 
         /// <summary>
         /// Product Price
         /// </summary>
-        [Required(ErrorMessage = "Price filed is required")]
+        [Required(ErrorMessage = "Price field is required")]
         [Range(1.00, double.MaxValue, ErrorMessage = "Entered price is not valid")]
         [DefaultValue(1.00)]
         public decimal Price { get; set; }
@@ -26,7 +26,7 @@ namespace EcommerceApp.Entities.DTOs.Product
         /// Product Rating
         /// </summary>
         [Required(ErrorMessage = "Rating field is required")]
-        [Range(0,5, ErrorMessage ="Rating should be betwwen 0 to 5")]
+        [Range(1,5, ErrorMessage ="Rating should be betwwen 0 to 5")]
         [DefaultValue(1)]
         public double Rating { get; set; }
 

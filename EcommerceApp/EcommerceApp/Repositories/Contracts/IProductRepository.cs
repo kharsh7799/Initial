@@ -4,7 +4,8 @@ namespace EcommerceApp.Repositories.Contracts
 {
     public interface IProductRepository
     {
-        Task<List<Product>> GetAllProducts(string? filterByNameValue = null);
+        Task<List<Product>> GetAllProducts();
+        Task<List<Product>> GetProductsByName(string filterByNameValue);
         Task<Product?> GetProductById(int id);
         Task<List<Product>> GetProductByCategoryId(int categoryId);
         Task<Product> AddProduct(Product product);

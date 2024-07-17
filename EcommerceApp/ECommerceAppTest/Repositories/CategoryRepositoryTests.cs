@@ -2,6 +2,7 @@
 using EcommerceApp.Entities.DomainModels;
 using EcommerceApp.Repositories.Contracts;
 using EcommerceApp.Repositories.Implementation;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -214,6 +215,7 @@ namespace ECommerceAppTest.Repositories
 
                 //Asserts
                 Assert.IsType<int>(categoryId);
+                Assert.Equal(categoryId, categoryToUpdate.Id);
             }
         }
         [Fact]
@@ -235,10 +237,12 @@ namespace ECommerceAppTest.Repositories
                 await _dbContext.SaveChangesAsync();
                 var categoryRepository = new CategoryRepository(_dbContext);
                 var categoryId = await categoryRepository.DeleteCategory(category);
+                var categoryData = await categoryRepository.GetCategoryById(categoryId);
 
                 //Asserts
                 Assert.IsType<int>(categoryId);
                 Assert.Equal(category.Id, categoryId);
+                Assert.Null(categoryData);
             }
         }
         [Fact]

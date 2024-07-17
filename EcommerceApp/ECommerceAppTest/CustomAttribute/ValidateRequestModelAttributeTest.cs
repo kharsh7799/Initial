@@ -1,96 +1,91 @@
-﻿using EcommerceApp.Entities.DomainModels;
+﻿using EcommerceApp.CustomAttributes;
+using EcommerceApp.Entities.DomainModels;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using EcommerceApp.CustomAttributes;
-using EcommerceApp.Controllers;
+using Microsoft.AspNetCore.Routing;
+using Moq;
 
 namespace ECommerceAppTest.CustomAttribute
 {
     public class ValidateRequestModelAttributeTest
     {
-        public ValidateRequestModelAttributeTest()
-        { 
-
-        }
         [Fact]
-        public void Test_ValidateRequestModelAttributeTest_Returns_Ok()
+        public void Test_ValidateRequestModelAttributeTest_Returns_BadRequest()
         {
-            var product = new Product
+           var product = new Product
             {
-                Name = "Nike sneaker",
                 Price = 15000,
                 Rating = 1,
                 CategoryId = 5,
             };
-            IDictionary<string,object> dict = new Dictionary<string, object>
-             {
-                { "product", product }
-             };
+
+           var actContext = new ActionContext(
+           Mock.Of<HttpContext>(),
+           Mock.Of<RouteData>(),
+           Mock.Of<ActionDescriptor>(),
+           Mock.Of<ModelStateDictionary>()
+           );
+           actContext.ModelState.AddModelError("Name", "The name field is required.");
+
             var actionContext = new ActionExecutingContext(
-               new ActionContext
-           {
-               HttpContext = new DefaultHttpContext(),
-               RouteData = new RouteData(),
-               ActionDescriptor = new ActionDescriptor(),
-           },
+               actContext,
                new List<IFilterMetadata>(),
-               dict,
-               new Mock<Controller>().Object);
+               new Dictionary<string, object>(),
+               new Mock<Controller>().Object
+               );
                
             var filter = new ValidateRequestModelAttribute();
-
             // Act
             filter.OnActionExecuting(actionContext);
 
             // Assert
-            Assert.Null(actionContext.Result);
+            Assert.IsType<BadRequestObjectResult>(actionContext.Result);
+            Assert.NotNull(actionContext.Result);
 
+            var badRequestResult = actionContext.Result as BadRequestObjectResult;
+            Assert.IsType<SerializableError>(badRequestResult?.Value);
+
+            var errorDictionary = badRequestResult.Value as SerializableError;
+            Assert.True(errorDictionary?.ContainsKey("Name"));
+            var errorMessages = errorDictionary?["Name"] as string[];
+            Assert.Contains("The name field is required.", errorMessages);
         }
 
         [Fact]
-        public void Test_ValidateRequestModelAttributeTest_Returns_BadRequest()
+        public void Test_ValidateRequestModelAttributeTest_Returns_OK()
         {
             var product = new Product
             {
-                Price = 0,
-                Rating = 8877654,
-                CategoryId = 1,
+                Name ="Adidas",
+                Price = 15000,
+                Rating = 1,
+                CategoryId = 5,
             };
-            IDictionary<string, object> dict = new Dictionary<string, object>
-             {
-                { "product", product }
-             };
+            var actContext = new ActionContext(
+             Mock.Of<HttpContext>(),
+             Mock.Of<RouteData>(),
+             Mock.Of<ActionDescriptor>(),
+             Mock.Of<ModelStateDictionary>()
+             );
+
+            //No modelstate error added.
+
             var actionContext = new ActionExecutingContext(
-              new ActionContext
-            {
-                HttpContext = new DefaultHttpContext(),
-                RouteData = new RouteData(),
-                ActionDescriptor = new ActionDescriptor(),
-            },
-              new List<IFilterMetadata>(),
-              dict,
-              new Mock<Controller>().Object);
+               actContext,
+               new List<IFilterMetadata>(),
+               new Dictionary<string, object>(),
+               new Mock<Controller>().Object
+               );
 
             var filter = new ValidateRequestModelAttribute();
-
             // Act
             filter.OnActionExecuting(actionContext);
 
             // Assert
             Assert.Null(actionContext.Result);
-
-            // Assert.IsType<BadRequestObjectResult>(actionContext.Result);
-
         }
     }
 }

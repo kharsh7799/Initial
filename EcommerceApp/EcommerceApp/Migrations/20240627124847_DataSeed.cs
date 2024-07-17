@@ -8,10 +8,8 @@ using System.Diagnostics.CodeAnalysis;
 namespace EcommerceApp.Migrations
 {
     [ExcludeFromCodeCoverage]
-    /// <inheritdoc />
     public partial class DataSeed : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(

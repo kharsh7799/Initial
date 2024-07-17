@@ -42,9 +42,9 @@ namespace ECommerceAppTest.ServicesTests
         public async Task Test_GetAllProducts_Returns_ProductList()
         {
             //Arrange
-            _productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+            _productRepositoryMock.Setup(p => p.GetAllProducts()).ReturnsAsync(products);
             //Act
-            var productsData = await productService.GetAllProducts(null);
+            var productsData = await productService.GetAllProducts();
 
             //Assert
             Assert.NotNull(productsData);
@@ -57,11 +57,31 @@ namespace ECommerceAppTest.ServicesTests
 
         }
         [Fact]
+        public async Task Test_GetAllProducts_Returns_ProductListByName()
+        {
+            var name = "Nike sneaker";
+            var productsByname = products.Where(x => x.Name.Contains(name)).ToList();
+            //Arrange
+            _productRepositoryMock.Setup(p => p.GetProductsByName(name)).ReturnsAsync(productsByname);
+            //Act
+            var productsData = await productService.GetAllProducts(name);
+
+            //Assert
+            Assert.NotNull(productsData);
+            Assert.IsType<List<Product>>(productsData);
+            Assert.Equal(productsByname[0].Id, productsData[0].Id);
+            Assert.Equal(productsByname[0].Name, productsData[0].Name);
+            Assert.Equal(productsByname[0].Rating, productsData[0].Rating);
+            Assert.Equal(productsByname[0].Price, productsData[0].Price);
+            Assert.Equal(productsByname.Count, productsData.Count);
+
+        }
+        [Fact]
         public async Task Test_GetAllProducts_Returns_EmptyProductList()
         {
             //Arrange
             var productList = new List<Product>();
-            _productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(productList);
+            _productRepositoryMock.Setup(p => p.GetAllProducts()).ReturnsAsync(productList);
             //Act
             var productsData = await productService.GetAllProducts(null);
             //Assert
@@ -134,7 +154,7 @@ namespace ECommerceAppTest.ServicesTests
         public async Task Test_AddProduct_Returns_CreatedProduct()
         {
             //Arrange
-             _productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+             _productRepositoryMock.Setup(p => p.GetAllProducts()).ReturnsAsync(products);
             _productRepositoryMock.Setup(p => p.AddProduct(It.IsAny<Product>())).ReturnsAsync(productModel);
             //Act
             var productData = await productService.AddProduct(productModel);
@@ -159,7 +179,7 @@ namespace ECommerceAppTest.ServicesTests
                 CategoryId = 5,
             };
             //Act
-            _productRepositoryMock.Setup(p => p.GetAllProducts(null)).ReturnsAsync(products);
+            _productRepositoryMock.Setup(p => p.GetAllProducts()).ReturnsAsync(products);
             var productData = await productService.AddProduct(productToAdd);
             //Asserts
             Assert.Null(productData);

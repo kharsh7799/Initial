@@ -68,7 +68,6 @@ public class Program {
 
         var app = builder.Build();
 
-        app.UseMiddleware<ExceptionMiddlware>();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -76,6 +75,7 @@ public class Program {
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+        app.UseMiddleware<ExceptionMiddlware>();
 
         app.UseHttpsRedirection();
 
