@@ -15,13 +15,6 @@ namespace ECommerceAppTest.CustomAttribute
         [Fact]
         public void Test_ValidateRequestModelAttributeTest_Returns_BadRequest()
         {
-           var product = new Product
-            {
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
-
            var actContext = new ActionContext(
            Mock.Of<HttpContext>(),
            Mock.Of<RouteData>(),
@@ -57,13 +50,6 @@ namespace ECommerceAppTest.CustomAttribute
         [Fact]
         public void Test_ValidateRequestModelAttributeTest_Returns_OK()
         {
-            var product = new Product
-            {
-                Name ="Adidas",
-                Price = 15000,
-                Rating = 1,
-                CategoryId = 5,
-            };
             var actContext = new ActionContext(
              Mock.Of<HttpContext>(),
              Mock.Of<RouteData>(),

@@ -11,6 +11,8 @@ using EcommerceApp.Services.Contracts;
 using EcommerceApp.Services.Implementations;
 using System.Diagnostics.CodeAnalysis;
 using EcommerceApp.Middleware;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc;
 /// <summary>
 /// Program class
 /// </summary>
@@ -27,7 +29,9 @@ public class Program {
 
         // Add services to the container.
 
+       
         builder.Services.AddControllers();
+        builder.Services.Configure<ApiBehaviorOptions>(opt => opt.SuppressModelStateInvalidFilter = true);
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
